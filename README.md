@@ -12,6 +12,16 @@ A tool for generating realistic healthcare dialogues between Barangay Health Wor
 - Generates high-quality audio with different voices for BHW and patients
 - Maintains natural conversation flow with appropriate timing
 
+## Example Outputs
+
+The repository includes example outputs in both Tagalog and English:
+- `transcripts/tagalog/` - Example Tagalog dialogue transcripts
+- `transcripts/english/` - Example English translations
+- `audio_output/tagalog/` - Example Tagalog audio recordings
+- `audio_output/english/` - Example English audio recordings
+
+These examples demonstrate the format, quality, and style of the generated content.
+
 ## Requirements
 
 - Python 3.11 or higher
@@ -22,7 +32,7 @@ A tool for generating realistic healthcare dialogues between Barangay Health Wor
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/HealthWorkerCopilot.git
+git clone https://github.com/nathan-eagle/HealthWorkerCopilot.git
 cd HealthWorkerCopilot
 ```
 
