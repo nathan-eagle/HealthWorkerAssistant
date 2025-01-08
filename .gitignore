@@ -2,6 +2,7 @@
 venv/
 env/
 ENV/
+.venv/
 
 # Python cache files
 __pycache__/
@@ -12,10 +13,6 @@ __pycache__/
 dist/
 build/
 *.egg-info/
-
-# Generated files
-transcripts/
-audio_output/
 
 # IDE specific files
 .vscode/

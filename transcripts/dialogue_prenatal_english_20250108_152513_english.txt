@@ -1,0 +1,63 @@
+Condition Type: prenatal
+Language: english
+Generated on: 2025-01-08 15:24:50
+
+[00:00] BHW: Good afternoon, Mrs. Maria. How are you feeling today?
+
+[00:30] Mrs. Maria: Good afternoon too, Barangay Health Worker. I'm feeling a bit unwell, there are times when I feel dizzy and nauseous.
+
+[01:00] BHW: Oh, I'm sorry to hear that. It might be due to your pregnancy. But let's see. We just need a little time to assess your condition.
+
+[02:00] BHW: We can start with your symptoms. Apart from dizziness and vomiting, are there any other symptoms you are experiencing?
+
+[02:30] Mrs. Maria: Sometimes, my back hurts and I get tired easily.
+
+[03:00] BHW: Thank you, Mrs. Maria. How about your eating and sleeping, are they normal?
+
+[03:30] Mrs. Maria: Not really, I can't taste the food, so I can't eat properly. I also have difficulty sleeping.
+
+[04:00] BHW: I understand. How about your previous pregnancies, did you have similar experiences?
+
+[04:30] Mrs. Maria: No, this is different. I feel worse now.
+
+[05:00] BHW: It might be due to your age, Mrs. Maria. But I assure you that we will address this.
+
+[06:00] BHW: Let's talk about your lifestyle. Do you exercise regularly, Mrs. Maria?
+
+[06:30] Mrs. Maria: Not much, always tired.
+
+[07:00] BHW: And your family, do they have any history of diseases that could affect your pregnancy?
+
+[07:30] Mrs. Maria: Not that I know of.
+
+[08:00] BHW: That's good. Is this your last pregnancy or do you plan to have more children in the future?
+
+[08:30] Mrs. Maria: This is the last one, Barangay Health Worker.
+
+[09:00] BHW: Thank you for your openness, Mrs. Maria. For now, it's important that we take care of your health for you and your baby.
+
+[09:30] BHW: First, we need to make sure you are eating enough and balanced. It's also important to take your vitamins and iron supplements.
+
+[10:00] BHW: Second, even though you're tired, let's try to have a little exercise. It could be a simple walk around your house.
+
+[10:30] BHW: And lastly, we need to make sure you are getting enough sleep. This will help your condition and the health of your baby.
+
+[11:00] BHW: With all of this, it's also important that we talk to your doctor. They are knowledgeable about the best action for your condition.
+
+[11:30] Mrs. Maria: Thank you, Barangay Health Worker. I will follow your advice.
+
+[12:00] BHW: Thank you, Mrs. Maria. After our conversation, I will call your doctor to inform them about your condition.
+
+[12:30] BHW: Next week, I will come back to see if there are changes in your symptoms. But if you have any concerns, don't hesitate to call me.
+
+[13:00] BHW: For now, let's start changing your routines. If you have any questions, don't hesitate to ask.
+
+[13:30] Mrs. Maria: I don't have any, Barangay Health Worker. You've been a great help to me.
+
+[14:00] BHW: That's my job, Mrs. Maria. What's important is that you and your baby are healthy.
+
+[14:30] BHW: I will come back next week. Just make sure that if you're not feeling well, call me immediately.
+
+[14:55] Mrs. Maria: Yes, Barangay Health Worker. Thank you very much.
+
+[15:00] BHW: You're welcome, Mrs. Maria. Take care of yourself and your baby. Until next time.
