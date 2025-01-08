@@ -39,8 +39,4 @@ env/
 .Spotlight-V100
 .Trashes
 ehthumbs.db
-Thumbs.db
-
-# Project specific
-audio_output/
-transcripts/ 
+Thumbs.db 
