@@ -25,4 +25,10 @@ build/
 
 # OS specific files
 .DS_Store
-Thumbs.db 
+Thumbs.db
+
+# Keep all generated files
+!input_transcripts/
+!interview_recordings/
+!audio_transcription/
+!copilot_output/ 

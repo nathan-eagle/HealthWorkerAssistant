@@ -1,0 +1,63 @@
+Condition Type: communicable disease
+Language: tagalog
+Generated on: 2025-01-08 15:28:20
+
+[00:00] BHW: Magandang umaga po, Ka Nelia. Kumusta po ang inyong kalagayan ngayon?
+
+[00:30] Patient: Magandang umaga rin, Ka Lina. Eto, medyo hindi masyadong maayos. Lagi akong inuubo at nilalagnat.
+
+[01:00] BHW: Naku, pasensya na po at ngayon lang ako nakadalaw. Tignan po natin kung ano ang maaaring dahilan ng inyong sakit.
+
+[01:30] Patient: Sige po, salamat Ka Lina. 
+
+[02:00] BHW: Simulan po natin sa mga sintomas. Bukod po sa ubo at lagnat, may nararamdaman pa po ba kayong iba?
+
+[02:30] Patient: Meron din po akong sipon, at madalas akong napapagod. 
+
+[03:00] BHW: Ilan na po bang araw ninyong nararamdaman ito? May iba pa po ba kayong sakit noong mga nakaraang araw?
+
+[03:30] Patient: Mga limang araw na po. Wala naman po akong ibang sakit bago ito.
+
+[04:00] BHW: Meron po bang miyembro ng inyong pamilya na may mga katulad ng inyong sintomas?
+
+[04:30] Patient: Wala naman po, ako lang po.
+
+[05:00] BHW: Naiintindihan ko po. Salamat sa inyong pagsasabi.
+
+[06:00] BHW: Usap naman po tayo tungkol sa inyong pamumuhay. Ano po ang karaniwang kinakain ninyo?
+
+[06:30] Patient: Karaniwan po akong kumakain ng isda, gulay, at kanin. Minsan po ay karne.
+
+[07:00] BHW: Paano po ang inyong ehersisyo? May regular po ba kayong ginagawang ehersisyo?
+
+[07:30] Patient: Hindi po masyado. Madalas po akong maglinis ng bahay at magtanim sa hardin.
+
+[08:00] BHW: May history po ba ng sakit sa pamilya ninyo?
+
+[08:30] Patient: May high blood pressure po ang aking ina, pero wala naman po ibang sakit.
+
+[09:00] BHW: Salamat po. Sa mga sintomas ninyo, maaaring mayroon po kayong trangkaso. Ito'y isang uri ng sakit na nakukuha sa ibang tao.
+
+[09:30] Patient: Ano po ang dapat kong gawin?
+
+[10:00] BHW: Importante po na magpahinga kayo at uminom ng maraming tubig. Kailangan din po na kumain ng masustansya at umiwas sa mga tao para hindi sila mahawa.
+
+[10:30] BHW: Uminom din po kayo ng mga gamot para sa ubo at lagnat. Kung hindi po ito mawala sa loob ng isang linggo, kailangan po nating konsultahin ang doktor.
+
+[11:00] Patient: Sige po, susundin ko po ang inyong payo.
+
+[11:30] BHW: Mabuti po 'yon. Tandaan po natin na ang kalusugan ay mahalaga.
+
+[12:00] BHW: Sa susunod na linggo, babalik po ako para tignan kung paano po ang inyong paggaling. Kung may mga katanungan po kayo, huwag po kayong mag-atubiling tawagan ako.
+
+[12:30] Patient: Salamat po, Ka Lina. Iingatan ko po ang aking sarili.
+
+[13:00] BHW: Sa ngayon po, kailangan po nating mag-isolate para hindi mahawa ang iba. Kumain po ng masustansya at uminom ng maraming tubig. 
+
+[13:30] BHW: Higit sa lahat, kailangan po nating manatiling positibo. Karamihan po sa mga taong may trangkaso ay nakakarekober naman po agad.
+
+[14:00] Patient: Sige po, gagawin ko po ang lahat ng sinabi nyo.
+
+[14:30] BHW: Mabuti po 'yon, Ka Nelia. Mag-ingat po kayo. Babalik po ako sa susunod na linggo para tignan kung paano ang inyong paggaling.
+
+[14:55] Patient: Salamat po, Ka Lina. Mag-iingat din po ako.
