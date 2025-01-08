@@ -39,7 +39,7 @@ class DialogueTranslator:
         return response.choices[0].message.content
 
     def translate_file(self, input_filepath):
-        """Translate a dialogue file and save it to the appropriate directory."""
+        """Translate a dialogue file and save it."""
         # Extract content
         header, dialogue = self.extract_dialogue_content(input_filepath)
         
@@ -53,11 +53,9 @@ class DialogueTranslator:
         # Create output filename
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         base_name = os.path.basename(input_filepath)
-        condition_type = re.search(r'dialogue_(.+?)_\d{8}', base_name).group(1)
+        condition_type = re.search(r'dialogue_(.+?)_(?:tagalog|english)', base_name).group(1)
         
-        output_dir = f"transcripts/{target_lang.lower()}"
-        os.makedirs(output_dir, exist_ok=True)
-        output_filepath = f"{output_dir}/dialogue_{condition_type}_{timestamp}.txt"
+        output_filepath = f"transcripts/dialogue_{condition_type}_{target_lang}_{timestamp}.txt"
         
         # Save translated file
         with open(output_filepath, 'w', encoding='utf-8') as f:

@@ -1,30 +1,22 @@
 # HealthWorker Copilot
 
-A tool for generating realistic healthcare dialogues between Barangay Health Workers (BHWs) and patients in Quezon Province, Philippines. The tool generates dialogues in both Tagalog (Tayabas dialect) and English, complete with audio recordings.
+A Python application that generates realistic dialogues between Barangay Health Workers (BHWs) and patients in Quezon Province, Philippines. The dialogues are generated in Tagalog (Tayabas dialect) and translated to English, with audio generation for both languages.
 
 ## Features
 
-- Generates realistic 15-minute healthcare dialogues for three conditions:
+- Generates realistic healthcare dialogues for three conditions:
   - Prenatal care
   - Communicable diseases
   - Non-communicable diseases
-- Supports both Tagalog (Tayabas dialect) and English
-- Generates high-quality audio with different voices for BHW and patients
-- Maintains natural conversation flow with appropriate timing
-
-## Example Outputs
-
-The repository includes example outputs in both Tagalog and English:
-- `transcripts/tagalog/` - Example Tagalog dialogue transcripts
-- `transcripts/english/` - Example English translations
-- `audio_output/tagalog/` - Example Tagalog audio recordings
-- `audio_output/english/` - Example English audio recordings
-
-These examples demonstrate the format, quality, and style of the generated content.
+- Uses OpenAI's GPT-4 for dialogue generation
+- Generates dialogues in Tagalog (Tayabas dialect)
+- Translates dialogues to English
+- Generates audio files for both Tagalog and English versions
+- Maintains consistent speaker voices across languages
 
 ## Requirements
 
-- Python 3.11 or higher
+- Python 3.8+
 - OpenAI API key
 - FFmpeg (for audio processing)
 
@@ -32,11 +24,11 @@ These examples demonstrate the format, quality, and style of the generated conte
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/nathan-eagle/HealthWorkerCopilot.git
+git clone https://github.com/yourusername/HealthWorkerCopilot.git
 cd HealthWorkerCopilot
 ```
 
-2. Create and activate a virtual environment:
+2. Create a virtual environment and activate it:
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows, use: venv\Scripts\activate
@@ -54,30 +46,24 @@ export OPENAI_API_KEY='your-api-key-here'
 
 ## Usage
 
-Run the main script to generate dialogues and audio:
+Run the main script to generate dialogues:
 ```bash
 python main.py
 ```
 
-This will:
-1. Generate Tagalog dialogues for all conditions
+The script will:
+1. Generate Tagalog dialogues
 2. Translate them to English
-3. Generate audio files for Tagalog dialogues
-4. Generate audio files for English dialogues
+3. Generate audio files for both languages
+4. Save all outputs in the appropriate directories
 
-Output files will be organized in:
-- `transcripts/tagalog/` - Tagalog dialogue transcripts
-- `transcripts/english/` - English dialogue transcripts
-- `audio_output/tagalog/` - Tagalog audio files
-- `audio_output/english/` - English audio files
+## Output Structure
 
-## Project Structure
-
-- `main.py` - Main script orchestrating the entire process
-- `generate_dialogue.py` - Handles dialogue generation
-- `translate_dialogue.py` - Handles translation between languages
-- `generate_audio.py` - Handles audio generation
-- `requirements.txt` - Python package dependencies
+- `transcripts/`: Contains dialogue transcripts
+  - `*_tagalog.txt`: Tagalog dialogue transcripts
+  - `*_english.txt`: English dialogue transcripts
+- `audio_output/`: Contains generated audio files
+  - Audio files for both Tagalog and English versions
 
 ## License
 

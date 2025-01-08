@@ -54,21 +54,17 @@ Format each line as:
             temperature=0.7,
             max_tokens=2000
         )
-        return response.choices[0].message.content
-
-    def save_dialogue(self, dialogue, condition_type, language="tagalog"):
-        """Save the dialogue to the appropriate directory."""
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        directory = f"transcripts/{language.lower()}"
-        os.makedirs(directory, exist_ok=True)
+        dialogue_content = response.choices[0].message.content
         
-        filename = f"{directory}/dialogue_{condition_type}_{timestamp}.txt"
+        # Save the dialogue to a file and return the filename
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        filename = f"transcripts/dialogue_{condition_type}_{language}_{timestamp}.txt"
         
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(f"Condition Type: {condition_type.replace('_', ' ')}\n")
             f.write(f"Language: {language}\n")
             f.write(f"Generated on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-            f.write("\n" + dialogue)
+            f.write("\n" + dialogue_content)
         
         return filename
 
@@ -78,6 +74,5 @@ Format each line as:
         for condition_type in self.condition_types:
             print(f"Generating {condition_type} dialogue in Tagalog...")
             dialogue = self.generate_dialogue(condition_type, "tagalog")
-            filename = self.save_dialogue(dialogue, condition_type, "tagalog")
-            generated_files.append(filename)
+            generated_files.append(dialogue)
         return generated_files 
