@@ -8,18 +8,21 @@ import traceback
 def main():
     try:
         # Create necessary directories
-        os.makedirs("input_transcripts/tagalog", exist_ok=True)
-        os.makedirs("input_transcripts/english", exist_ok=True)
-        os.makedirs("interview_recordings/tagalog", exist_ok=True)
-        os.makedirs("interview_recordings/english", exist_ok=True)
-        os.makedirs("audio_transcription", exist_ok=True)
-        os.makedirs("copilot_output", exist_ok=True)
+        os.makedirs("Synthetic_Interactions/audio/tagalog", exist_ok=True)
+        os.makedirs("Synthetic_Interactions/audio/english", exist_ok=True)
+        os.makedirs("Synthetic_Interactions/text/tagalog", exist_ok=True)
+        os.makedirs("Synthetic_Interactions/text/english", exist_ok=True)
+        os.makedirs("Interaction_Analysis/transcriptions", exist_ok=True)
+        os.makedirs("Interaction_Analysis/translations", exist_ok=True)
+        os.makedirs("Interaction_Analysis/analysis", exist_ok=True)
 
         # Check if we already have audio files
-        audio_files = [f for f in os.listdir("interview_recordings/tagalog") 
-                      if f.endswith('.mp3') and not f.startswith('.')]
+        audio_files = []
+        for root, dirs, files in os.walk("Synthetic_Interactions/audio"):
+            audio_files.extend([f for f in files if f.endswith('.mp3') and not f.startswith('.')])
 
         if not audio_files:
+            print("No existing audio files found. Generating new dialogues...")
             # Initialize generators
             dialogue_gen = DialogueGenerator()
             translator = DialogueTranslator()
@@ -59,17 +62,19 @@ def main():
                     print(f"\nError processing {condition_type}: {str(e)}")
                     print(traceback.format_exc())
                     continue
-
-        # Initialize audio analyzer
-        analyzer = AudioAnalyzer()
-        
-        # Process existing audio files
-        print("\nAnalyzing audio recordings...")
-        analysis_results = analyzer.process_all_recordings()
-        
-        print("\nAnalysis complete! Results have been saved to:")
-        print("- Transcriptions: audio_transcription/")
-        print("- Analysis: copilot_output/")
+        else:
+            print(f"\nFound {len(audio_files)} existing audio files. Proceeding with analysis...")
+            # Initialize audio analyzer
+            analyzer = AudioAnalyzer()
+            
+            # Process existing audio files
+            print("\nAnalyzing audio recordings...")
+            analysis_results = analyzer.process_all_recordings()
+            
+            print("\nAnalysis complete! Results have been saved to:")
+            print("- Transcriptions: Interaction_Analysis/transcriptions/")
+            print("- Translations: Interaction_Analysis/translations/")
+            print("- Analysis: Interaction_Analysis/analysis/")
 
     except Exception as e:
         print(f"\nError in main process: {str(e)}")

@@ -58,7 +58,9 @@ Format each line as:
         
         # Save the dialogue to a file and return the filename
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"transcripts/dialogue_{condition_type}_{language}_{timestamp}.txt"
+        output_dir = f"Synthetic_Interactions/text/{language.lower()}"
+        os.makedirs(output_dir, exist_ok=True)
+        filename = os.path.join(output_dir, f"dialogue_{condition_type}_{language}_{timestamp}.txt")
         
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(f"Condition Type: {condition_type.replace('_', ' ')}\n")

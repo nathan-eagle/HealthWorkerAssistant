@@ -1,4 +1,6 @@
 openai>=1.0.0
-pathlib
-pydub
-anthropic>=0.8.0 
+pathlib>=1.0.1
+pydub>=0.25.1
+anthropic>=0.8.0
+python-dotenv>=1.0.0
+requests>=2.31.0 

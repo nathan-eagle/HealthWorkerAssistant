@@ -98,8 +98,12 @@ class AudioGenerator:
 
     def create_conversation_audio(self, transcript_path):
         """Create a single audio file from a transcript with different voices for speakers."""
+        # Get language from transcript path
+        language = "tagalog" if "tagalog" in transcript_path.lower() else "english"
+        
         # Create output directory
-        os.makedirs("audio_output", exist_ok=True)
+        output_dir = f"Synthetic_Interactions/audio/{language}"
+        os.makedirs(output_dir, exist_ok=True)
         
         # Extract dialogues from transcript
         dialogues, condition_type = self.extract_dialogues(transcript_path)
@@ -169,7 +173,7 @@ class AudioGenerator:
             # Save the final audio file
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             base_filename = Path(transcript_path).stem
-            output_path = Path("audio_output") / f"{base_filename}_{timestamp}.mp3"
+            output_path = Path(output_dir) / f"{base_filename}_{timestamp}.mp3"
             
             # Export with high quality
             final_audio.export(
@@ -184,13 +188,13 @@ class AudioGenerator:
 
     def generate_all_audio(self, language="tagalog"):
         """Generate audio for all dialogue files in the specified language."""
-        transcript_dir = f"transcripts/{language.lower()}"
+        transcript_dir = f"Synthetic_Interactions/text/{language.lower()}"
         generated_files = []
         
         for filename in os.listdir(transcript_dir):
             if filename.startswith('dialogue_') and filename.endswith('.txt'):
                 transcript_path = os.path.join(transcript_dir, filename)
-                audio_file = self.create_conversation_audio(transcript_path, language)
+                audio_file = self.create_conversation_audio(transcript_path)
                 generated_files.append(audio_file)
         
         return generated_files 
