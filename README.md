@@ -1,16 +1,16 @@
 # HealthWorkerCopilot 🏥
 
-An advanced AI-powered platform for generating, analyzing, and understanding healthcare worker interactions in multilingual contexts, with a specific focus on Tagalog-English healthcare conversations.
+An advanced AI-powered platform for generating, analyzing, and understanding healthcare worker interactions in multilingual contexts, with a specific focus on Tayabas Tagalog and the medical conditions prevalent in the Quezon province of the Philippines.
 
 ## Overview
 
-HealthWorkerCopilot leverages state-of-the-art language models and speech synthesis to create, analyze, and understand healthcare worker interactions. It employs a sophisticated multi-stage pipeline that generates realistic healthcare dialogues, converts them to natural speech, and provides deep analytical insights.
+HealthWorkerCopilot leverages the latest language models and speech synthesis to create, analyze, and augment community health worker interactions. It employs a multi-stage pipeline that generates realistic healthcare dialogues, converts them to natural speech, and provides deep analytical insights.
 
 ### Key Features
 
 - **Multi-LLM Architecture**
   - Uses GPT-4 for generating nuanced, contextually-appropriate healthcare dialogues
-  - Employs Claude Opus for deep semantic analysis of interactions
+  - Employs Claude Opus for semantic analysis of interactions
   - Combines multiple AI models for enhanced accuracy and insight
 
 - **Multilingual Capabilities**
@@ -105,9 +105,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Acknowledgments
-
-Special thanks to:
-- OpenAI for GPT-4 and TTS capabilities
-- Anthropic for Claude Opus
-- The healthcare workers who inspire this work 
