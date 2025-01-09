@@ -1,0 +1,27 @@
+[00:00] BHW: Good afternoon. I am Aling Linda, your Barangay Health Worker. How are you feeling today?
+[00:09] Patient: Good afternoon to you too, Aling Linda. I still feel quite weak. Always feeling tired.
+[00:16] BHW: I am here to check on your condition and provide medical assistance. Perhaps there is something else you need to tell me about your illness.
+[00:27] Patient: Thank you for visiting, Aling Linda. I haven't been able to go to the clinic for a long time due to my condition.
+[00:37] BHW: Let's go over your symptoms. What are you feeling?
+[00:43] Patient: I always feel weak, have cough and colds, and often have stomachaches.
+[00:51] BHW: How long have you been experiencing these?
+[00:55] Patient: About two weeks now, Aling Linda.
+[00:59] BHW: Do you have a history of this illness or does anyone in your family have it?
+[01:06] Patient: Not that I know of, Aling Linda. But my sibling has TB.
+[01:13] BHW: Thank you for the information. Based on your symptoms, you may have TB or tuberculosis. This can be acquired through coughing or sneezing of a person with TB.
+[01:29] BHW: How is your lifestyle?
+[01:32] Patient: We live simply, Aling Linda. I work at the market and often interact with different people.
+[01:41] BHW: Those who frequently interact with others may contract TB. Do you smoke or drink alcohol?
+[01:52] Patient: I don't smoke, Aling Linda. But occasionally, I drink alcohol.
+[01:59] BHW: Smoking and drinking alcohol can lead to more severe illness. We need to stop these.
+[02:08] Patient: Yes, Aling Linda. I will try to stop drinking alcohol.
+[02:14] BHW: TB can be cured. You need to take the medication prescribed by the doctor without fail to ensure that the illness is treated.
+[02:26] Patient: What should I do to prevent my family from getting infected?
+[02:32] BHW: You need to wear a mask when inside the house or when interacting with your family. And you also need to wash your hands frequently. This is to prevent spreading the illness to others.
+[02:46] Patient: Thank you for your advice, Aling Linda. I will follow these.
+[02:52] BHW: Continue taking your medications and follow the advice I gave. I will visit you again next week to see if there are changes in your condition.
+[03:05] Patient: Yes, Aling Linda. Thank you for your help.
+[03:09] BHW: If you feel anything unusual, don't hesitate to call me or other BHWs. Your recovery is important to us. Take care always.
+[03:23] Patient: Thank you again, Aling Linda. I will take care too.
+[03:28] BHW: On our next meeting, I expect that you will feel better. Good afternoon and take care always.
+[03:38] BHW: You can call our office if you have any more questions or needs.

@@ -1,82 +1,55 @@
 import os
+from dotenv import load_dotenv
 from generate_dialogue import DialogueGenerator
-from translate_dialogue import DialogueTranslator
 from generate_audio import AudioGenerator
 from transcribe_analyze import AudioAnalyzer
-import traceback
 
 def main():
-    try:
-        # Create necessary directories
-        os.makedirs("Synthetic_Interactions/audio", exist_ok=True)
-        os.makedirs("Synthetic_Interactions/text/tagalog", exist_ok=True)
-        os.makedirs("Synthetic_Interactions/text/english", exist_ok=True)
-        os.makedirs("Interaction_Analysis/transcriptions", exist_ok=True)
-        os.makedirs("Interaction_Analysis/analysis", exist_ok=True)
+    # Load environment variables from .env file
+    load_dotenv()
+    
+    # Check if API keys are set
+    if not os.getenv("OPENAI_API_KEY") or not os.getenv("ANTHROPIC_API_KEY"):
+        print("Error: API keys not found. Please make sure OPENAI_API_KEY and ANTHROPIC_API_KEY are set in .env file")
+        return
 
-        # Check if we already have audio files
-        audio_files = []
-        for filename in os.listdir("Synthetic_Interactions/audio"):
-            if filename.endswith(".mp3") and not filename.startswith(".") and "tagalog" in filename.lower():
-                audio_files.append(filename)
+    # Create necessary directories
+    os.makedirs("Synthetic_Interactions/text", exist_ok=True)
+    os.makedirs("Synthetic_Interactions/audio", exist_ok=True)
+    os.makedirs("Interaction_Analysis/transcriptions", exist_ok=True)
+    os.makedirs("Interaction_Analysis/analysis", exist_ok=True)
 
-        if not audio_files:
-            print("No existing audio files found. Generating new dialogues...")
-            # Initialize generators
-            dialogue_gen = DialogueGenerator()
-            translator = DialogueTranslator()
-            audio_gen = AudioGenerator()
+    # Check for existing text files
+    text_files = [f for f in os.listdir("Synthetic_Interactions/text") if f.endswith('.txt')]
+    print(f"\nFound {len(text_files)} text files in Synthetic_Interactions/text/")
+    
+    if len(text_files) < 3:  # We need one for each condition type
+        print("\n=== Generating Synthetic Dialogues ===")
+        # Generate dialogues
+        dialogue_generator = DialogueGenerator()
+        dialogue_files = dialogue_generator.generate_all_dialogues()
+    else:
+        print("\n=== Found existing dialogue files, skipping generation ===")
+        dialogue_files = [os.path.join("Synthetic_Interactions/text", f) for f in text_files]
 
-            # Configuration
-            num_condition_examples = 1
-            condition_types = [
-                "prenatal",
-                "communicable_disease",
-                "non_communicable_disease"
-            ]
+    print("\n=== Generating Audio Files ===")
+    # Generate audio files (will skip existing ones)
+    audio_generator = AudioGenerator()
+    audio_files = audio_generator.generate_all_audio()
 
-            for condition_type in condition_types:
-                try:
-                    for example_num in range(num_condition_examples):
-                        print(f"\n1. Generating Tagalog dialogue for {condition_type} condition (Example {example_num + 1}/{num_condition_examples})...")
-                        tagalog_file = dialogue_gen.generate_dialogue(condition_type, "tagalog")
-                        
-                        print("\n2. Translating to English...")
-                        english_file = translator.translate_file(tagalog_file)
-                        
-                        print("\n3. Generating Tagalog audio file...")
-                        tagalog_audio = audio_gen.create_conversation_audio(tagalog_file)
-
-                        print("\n4. Generating English audio file...")
-                        english_audio = audio_gen.create_conversation_audio(english_file)
-
-                        print("\nProcess completed!")
-                        print(f"\nGenerated files:")
-                        print(f"Tagalog Transcript: {tagalog_file}")
-                        print(f"Tagalog Audio: {tagalog_audio}")
-                        print(f"English Transcript: {english_file}")
-                        print(f"English Audio: {english_audio}")
-
-                except Exception as e:
-                    print(f"\nError processing {condition_type}: {str(e)}")
-                    print(traceback.format_exc())
-                    continue
-        else:
-            print(f"\nFound {len(audio_files)} Tagalog audio files. Proceeding with analysis...")
-            # Initialize audio analyzer
-            analyzer = AudioAnalyzer()
-            
-            # Process existing audio files
-            print("\nAnalyzing audio recordings...")
-            analysis_results = analyzer.process_all_recordings()
-            
-            print("\nAnalysis complete! Results have been saved to:")
-            print("- Transcriptions (Tagalog & English): Interaction_Analysis/transcriptions/")
-            print("- Analysis: Interaction_Analysis/analysis/")
-
-    except Exception as e:
-        print(f"\nError in main process: {str(e)}")
-        print(traceback.format_exc())
+    print("\n=== Analyzing Interactions ===")
+    # Analyze the audio files
+    analyzer = AudioAnalyzer()
+    results = analyzer.process_all_recordings()
+    
+    print("\n=== Processing Complete ===")
+    print("Generated files:")
+    for result in results:
+        if result:  # Only print if result is not None
+            print(f"\nAudio: {result['audio_file']}")
+            print(f"Tagalog Transcription: {result['tagalog_transcription']}")
+            print(f"English Translation: {result['english_transcription']}")
+            print(f"Analysis: {result['analysis']}")
 
 if __name__ == "__main__":
     main() 

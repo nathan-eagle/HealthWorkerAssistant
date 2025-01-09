@@ -57,9 +57,12 @@ class AudioGenerator:
         with open(transcript_path, 'r', encoding='utf-8') as f:
             content = f.read()
         
-        # Get condition type from the first line
+        # Get condition type from the first line and normalize it
         first_line = content.split('\n')[0]
         condition_type = first_line.split(': ')[1] if ': ' in first_line else None
+        if condition_type:
+            # Replace spaces with underscores and convert to lowercase
+            condition_type = condition_type.lower().replace(' ', '_')
         
         # Skip only the header lines (first 4 lines)
         lines = content.split('\n')
@@ -98,11 +101,8 @@ class AudioGenerator:
 
     def create_conversation_audio(self, transcript_path):
         """Create a single audio file from a transcript with different voices for speakers."""
-        # Get language from transcript path
-        language = "tagalog" if "tagalog" in transcript_path.lower() else "english"
-        
         # Create output directory
-        output_dir = f"Synthetic_Interactions/audio/{language}"
+        output_dir = "Synthetic_Interactions/audio"
         os.makedirs(output_dir, exist_ok=True)
         
         # Extract dialogues from transcript
@@ -170,10 +170,13 @@ class AudioGenerator:
             # Add a short silence at the end
             final_audio += AudioSegment.silent(duration=500)
             
-            # Save the final audio file
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            base_filename = Path(transcript_path).stem
-            output_path = Path(output_dir) / f"{base_filename}_{timestamp}.mp3"
+            # Get sequence number from filename
+            import re
+            seq_match = re.search(r'_(\d+)', Path(transcript_path).stem)
+            seq_num = seq_match.group(1) if seq_match else "1"
+            
+            # Create output filename using condition type from file content
+            output_path = Path(output_dir) / f"{condition_type}_{seq_num}.mp3"
             
             # Export with high quality
             final_audio.export(
@@ -186,15 +189,44 @@ class AudioGenerator:
             print(f"\nGenerated conversation audio: {output_path}")
             return output_path
 
-    def generate_all_audio(self, language="tagalog"):
-        """Generate audio for all dialogue files in the specified language."""
-        transcript_dir = f"Synthetic_Interactions/text/{language.lower()}"
+    def generate_all_audio(self):
+        """Generate audio for all dialogue files, skipping those that already have audio."""
+        transcript_dir = "Synthetic_Interactions/text"
+        audio_dir = "Synthetic_Interactions/audio"
         generated_files = []
         
+        # Get list of existing audio files
+        existing_audio = {f.stem for f in Path(audio_dir).glob("*.mp3")}
+        
         for filename in os.listdir(transcript_dir):
-            if filename.startswith('dialogue_') and filename.endswith('.txt'):
+            if filename.endswith('.txt'):
                 transcript_path = os.path.join(transcript_dir, filename)
+                
+                # Extract condition type and dialogues
+                dialogues, condition_type = self.extract_dialogues(transcript_path)
+                if not condition_type:
+                    print(f"Warning: Could not determine condition type for {filename}")
+                    continue
+                
+                # Simplify condition type (remove '_disease' suffix)
+                condition_type = condition_type.replace('_disease', '')
+            
+
+                # Get sequence number from filename
+                seq_match = re.search(r'_(\d+)', filename)
+                seq_num = seq_match.group(1) if seq_match else "1"
+                
+                # Check if audio already exists
+                expected_audio_stem = f"{condition_type}_{seq_num}"
+                if expected_audio_stem in existing_audio:
+                    print(f"\nSkipping {filename} - audio already exists")
+                    audio_path = os.path.join(audio_dir, f"{expected_audio_stem}.mp3")
+                    generated_files.append(audio_path)
+                    continue
+                
+                # Generate audio if it doesn't exist
                 audio_file = self.create_conversation_audio(transcript_path)
-                generated_files.append(audio_file)
+                if audio_file:
+                    generated_files.append(audio_file)
         
         return generated_files 

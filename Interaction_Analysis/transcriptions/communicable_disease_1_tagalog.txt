@@ -1,0 +1,27 @@
+[00:00] BHW: Magandang hapon po. Ako po si Aling Linda, ang inyong Barangay Health Worker. Kumusta na po ang pakiramdam ninyo ngayon?
+[00:09] Patient: Magandang hapon rin po, Aling Linda. Medyo mahina pa rin ang pakiramdam ko. Parang laging pagod.
+[00:16] BHW: Ako po'y narito para alamin ang inyong kalagayan at magbigay ng tulong medikal. Baka po may kailangan pa kayong sabihin sa akin tungkol sa inyong sakit.
+[00:27] Patient: Salamat po sa inyong pagbibisita, Aling Linda. Matagal na rin po akong hindi nakakapunta sa klinika dahil sa aking kalagayan.
+[00:37] BHW: Unawayin po natin ang mga sintomas ninyo. Ano po ang mga nararamdaman ninyo?
+[00:43] Patient: Laging po akong nanghihina, may ubo at sipon, at madalas rin pong masakit ang aking tiyan.
+[00:51] BHW: Gano po katagal ninyong nararamdaman ang mga ito?
+[00:55] Patient: Mga dalawang linggo na rin po, Aling Linda.
+[00:59] BHW: Mayroon po ba kayong kasaysayan ng ganitong sakit o mayroon sa inyong pamilya?
+[01:06] Patient: Wala naman po sa alam ko, Aling Linda. Pero ang kapatid ko po ay may TB.
+[01:13] BHW: Salamat po sa impormasyon. Sa inyong mga sintomas, maaring mayroon kayong TB o tuberculosis. Maaring nakukuha ito sa pamamagitan ng pag-ubo o pagbahing ng isang taong may TB.
+[01:29] BHW: Paano po ang inyong pamumuhay?
+[01:32] Patient: Simple lang nam po kami, Aling Linda. Nagtatrabaho po ako sa palengke at madalas po akong nakakasalamuhan ng iba't ibang tao.
+[01:41] BHW: Ang mga palawang palaging nakakasalamuhan ng iba'y iba ay maaaring mahawa ng TB. Kasama po ba kayo sa mga naninigarilyo o umiinom ng alak?
+[01:52] Patient: Hindi po ako naninigarilyo, Aling Linda. Pero paminsan-minsan po, umiinom ako ng alak.
+[01:59] BHW: Ang paninigarilyo at pag-inom ng alak ay maaaring magdulot ng mas malalang sakit. Kailangan po nating itigil ang mga ito.
+[02:08] Patient: Opo, Aling Linda. Susubukan ko po itigil ang pag-inom ng alak.
+[02:14] BHW: Ang TB ay maaring malunasan. Kailangan po ninyong uminom ng gamot na ibibigay ng doktor nang walang palya para siguradong magamot ang sakit.
+[02:26] Patient: Ano po ba ang mga dapat kong gawin para hindi mahawa ang aking pamilya?
+[02:32] BHW: Kailangan po ninyong magsuot ng mask kapag nasa loob ng bahay o kapag nakakasalamuha ang inyong pamilya. At kailangan po rin ninyong maghugas ng kamay palagi. Ito'y para hindi makahawa ng sakit sa iba.
+[02:46] Patient: Salamat po sa mga payo ninyo, Aling Linda. Susundin ko po ang mga ito.
+[02:52] BHW: Ipagpatuloy po ninyo ang pag-inom ng inyong mga gamot at sundin ang mga payong binigay ko. Bibisitahin ko po kayo ulit sa susunod na linggo para makita kung may pagbabago sa inyong kalagayan.
+[03:05] Patient: Opo, Aling Linda. Salamat po sa inyong tulong.
+[03:09] BHW: Kung mayroon po kayong nararamdaman na hindi maganda, wag po kayong mag-atubiling tumawag sa akin o sa iba pang mga BHW. Ang inyong susugan ay mahalaga sa amin. Mag-in po kayo palagi.
+[03:23] Patient: Salamat po ulit, Aling Linda. Mag-iingat din po ako.
+[03:28] BHW: Sa susunod po nating pagkikita, inaasahan ko po na mas maganda ang inyong pakiramdam. Magandang hapon po at ingat po palagi.
+[03:38] BHW: Maari po ninyong tawagan ang aming opisina kung mayroon pa po kayong katanungan o pangangailangan.

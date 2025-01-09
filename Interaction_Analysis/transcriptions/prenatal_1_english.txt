@@ -1,0 +1,32 @@
+[00:00] BHW: Good afternoon, Sister Maria. How are you?
+[00:05] Patient: Ah, good afternoon too. My back hurts a bit, but it's okay.
+[00:11] Patient: I'm sorry for bothering you.
+[00:15] BHW: I'm here to help you with your condition.
+[00:19] Patient: Thank you. I'm a bit nervous about my pregnancy.
+[00:24] BHW: I understand. Where do you feel pain?
+[00:29] Patient: In my back and I urinate quite frequently.
+[00:33] BHW: How many months are you into your pregnancy?
+[00:36] Patient: I'm already in my sixth month.
+[00:39] BHW: Have you been seeing a doctor? What are they saying about your condition?
+[00:46] Patient: Yes, I've been getting check-ups. The doctor said it's normal, but my hemoglobin is a bit low.
+[00:55] BHW: Oh, we need to monitor that. How about your lifestyle? Are you eating nutritious food?
+[01:04] Patient: Yes, we eat vegetables and fish, but sometimes it's not enough.
+[01:11] BHW: It's important that we eat enough and nutritious food for your health and your baby's.
+[01:18] BHW: How about your family? Do they have any history of illnesses?
+[01:25] Patient: None, but my husband has high blood pressure.
+[01:30] BHW: Oh, is that so? We need to be careful as it might be passed on to your child.
+[01:38] Patient: Yes, my doctor also says that.
+[01:41] BHW: It's good that they're telling you. Your condition is normal for pregnant women, but we need to monitor your hemoglobin.
+[01:51] BHW: We need to eat foods rich in iron such as moringa, mung beans, and meat.
+[01:59] Patient: Yes, my doctor also tells me that.
+[02:03] BHW: That's good, we also need to have regular exercise. Simple, no need for intense exercise.
+[02:13] Patient: What kind of exercise?
+[02:16] BHW: Just simple, like walking for a few minutes in the morning. This can help reduce your back pain.
+[02:26] BHW: We also need to avoid stress. It's also important that we rest and eat nutritious food.
+[02:34] BHW: Next week, we have a seminar in the barangay about prenatal care. I hope you can join us.
+[02:43] Patient: Yes, I'll go.
+[02:45] BHW: That's good, so you can learn more about pregnancy.
+[02:52] BHW: We also need to have regular check-ups with the doctor. You can also come to me if you have any questions.
+[03:02] Patient: Thank you very much for your help.
+[03:05] BHW: This is my job. You're welcome.
+[03:08] BHW: Take care, Sister Maria, and I hope your condition continues to be well.

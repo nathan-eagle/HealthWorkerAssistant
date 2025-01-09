@@ -1,0 +1,32 @@
+[00:00] BHW: Magandang hapon po, Ate Maria. Kumusta po kayo?
+[00:05] Patient: Ah, magandang hapon din po. Medyo masakit ang likod ko, pero okay lang naman.
+[00:11] Patient: Nakupasensya na po kung naabala ko kayo.
+[00:15] BHW: Dito po ako para tulungan kayo sa inyong kalagayan.
+[00:19] Patient: Salamat po. Medyo kinakabahan ako sa aking pagbubuntis.
+[00:24] BHW: Naintindihan ko po. Saan po ba kayo nakakaramdam ng sakit?
+[00:29] Patient: Sa likod po at medyo madalas ang pag-ihi ko.
+[00:33] BHW: Ilang buwan na po ang inyong pagbubuntis?
+[00:36] Patient: Nasa anim na buwan na po.
+[00:39] BHW: Nagpapatingin na po ba kayo sa doktor? Ano po ang mga sinasabi nila tungkol sa inyong kalagayan?
+[00:46] Patient: Opo, nagpapat-check up po ako. Sabi ng doktor normal naman daw, pero medyo mababa ang aking hemoglobin.
+[00:55] BHW: Naku, kailangan nating bantayan yan. Kumusta naman po ang inyong pamumuhay? Kumakain ba kayo ng masustansya?
+[01:04] Patient: Opo, kumakain naman kami ng gulay at ista, pero minsan hindi rin sapat.
+[01:11] BHW: Mahalaga po na kumain tayo ng sapat at masustansya para sa kalusugan ninyo at ng inyong baby.
+[01:18] BHW: Kumusta naman po ang inyong pamilya? May mga kasaysayan po ba sila ng mga sakit?
+[01:25] Patient: Wala naman po, pero may high blood pressure po ang aking asawa.
+[01:30] BHW: Ah, ganun po ba? Kailangan po nating magingat at baka ito rin ay may pasa sa inyong anak.
+[01:38] Patient: Opo, sinasabi rin po yan ng doktor ko.
+[01:41] BHW: Mabuti naman po at sinasabi nila sa inyo. Ang inyong kalagayan po ay normal sa mga buntis, pero kailangan nating bantayan ang inyong hemoglobin.
+[01:51] BHW: Kailangan po nating kumain ng mga pagkaing mayaman sa iron tulad ng malunggay, mongo at karne.
+[01:59] Patient: Opo, sinasabi rin po sa akin ng doktor ko yan.
+[02:03] BHW: Mabuti naman po, kailangan rin po natin magkaroon ng regular na ehersisyo. Simple lang, hindi kailangan ng matinding ehersisyo.
+[02:13] Patient: Anong klase po ng ehersisyo?
+[02:16] BHW: Simple lang po, tulad ng paglalakad ng ilang minuto sa umaga. Ito po ay makatulong na mabawasan ang sakit na inyong likod.
+[02:26] BHW: Kailangan rin po nating iwasan ang stress. Mahalaga rin po na magpahinga tayo at kumain ng masustansya.
+[02:34] BHW: Sa susunod po na linggo, may seminar po tayo sa barangay tungkol sa prenatal care. Sana po ay makasama kayo.
+[02:43] Patient: Opo, pupunta po.
+[02:45] BHW: Mabuti po iyon, tuon po mas marami pa kayong matututunan tungkol sa pagbubuntis.
+[02:52] BHW: Kailangan din po natin magpacheck up sa doktorn regular. Maari rin po kayong dumulog sa akin kung may mga katanungan kayo.
+[03:02] Patient: Maraming salamat po sa inyong tulong.
+[03:05] BHW: Ito po ang aking trabaho. Natuloy.
+[03:08] BHW: Ingat po kayo, Ate Maria, at sana ay magpatuloy ang inyong maayos na kalagayan.
