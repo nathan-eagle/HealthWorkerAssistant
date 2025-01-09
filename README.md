@@ -1,10 +1,25 @@
 # HealthWorkerCopilot 🏥
 
-A tool for generating and analyzing healthcare worker interactions in Tagalog and English, focused on common medical conditions in the Quezon province of the Philippines.
+A tool for generating, analyzing, and augmenting healthcare worker interactions in Tagalog and English, focused on common medical conditions in the Quezon province of the Philippines.
 
 ## Overview
 
 HealthWorkerCopilot uses language models and speech synthesis to create and analyze simulated community health worker interactions. It processes dialogues through multiple stages: generation, speech synthesis, and analysis.
+
+### AI Models Used
+
+- **Dialogue Generation**
+  - GPT-4o and o1 for initial dialogue creation
+  - Claude Opus for dialogue expansion and enhancement
+  - Focus on maintaining medical accuracy and cultural context
+
+- **Audio Processing**
+  - OpenAI TTS for natural speech synthesis
+  - Whisper for accurate Tagalog transcription
+  - Support for multiple voice profiles and natural conversation flow
+
+- **Analysis Pipeline**
+  - Claude Opus for translation and in-depth interaction analysis
 
 ### Current Features
 
