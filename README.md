@@ -1,40 +1,53 @@
 # HealthWorkerCopilot 🏥
 
-An advanced AI-powered platform for generating, analyzing, and understanding healthcare worker interactions in multilingual contexts, with a specific focus on Tayabas Tagalog and the medical conditions prevalent in the Quezon province of the Philippines.
+A tool for generating and analyzing healthcare worker interactions in Tagalog and English, focused on common medical conditions in the Quezon province of the Philippines.
 
 ## Overview
 
-HealthWorkerCopilot leverages the latest language models and speech synthesis to create, analyze, and augment community health worker interactions. It employs a multi-stage pipeline that generates realistic healthcare dialogues, converts them to natural speech, and provides deep analytical insights.
+HealthWorkerCopilot uses language models and speech synthesis to create and analyze simulated community health worker interactions. It processes dialogues through multiple stages: generation, speech synthesis, and analysis.
 
-### Key Features
+### Current Features
 
-- **Multi-LLM Architecture**
-  - Uses GPT-4 for generating nuanced, contextually-appropriate healthcare dialogues
-  - Employs Claude Opus for semantic analysis of interactions
-  - Combines multiple AI models for enhanced accuracy and insight
+- **Dialogue Generation**
+  - Generates healthcare dialogues in Tagalog with English code-switching
+  - Focuses on common conditions: prenatal care, communicable diseases, and non-communicable diseases
+  - Includes cultural context specific to Quezon Province
 
-- **Multilingual Capabilities**
-  - Generates authentic Tagalog-English code-switched conversations
-  - Provides accurate translations and transcriptions
-  - Maintains cultural and linguistic authenticity
+- **Audio Processing**
+  - Converts text dialogues to speech using text-to-speech models
+  - Supports different voices for health workers and patients
+  - Includes natural pauses and conversation flow
 
-- **Advanced Audio Synthesis**
-  - Utilizes OpenAI's latest TTS models for natural-sounding speech
-  - Supports multiple voice profiles for different speakers
-  - Automatically handles gender-appropriate voice selection
-  - Implements intelligent pause timing for natural conversation flow
+- **Basic Analysis**
+  - Transcribes audio back to text
+  - Translates between Tagalog and English
+  - Provides initial interaction analysis
 
-- **Comprehensive Analysis Pipeline**
-  - Transcribes audio back to text with high accuracy
-  - Provides detailed interaction analysis
-  - Identifies key healthcare communication patterns
-  - Assesses cultural and linguistic competency
+### Upcoming Features
+
+#### AI-Powered Symptom Checking
+- Identify potential red flags in patient symptoms
+- Suggest possible diagnoses based on symptoms and medical history
+- Recommend appropriate treatments or referrals
+- Integration with local healthcare resource information
+
+#### AI-Powered Patient Education
+- Provide condition-specific information in Tagalog
+- Offer health promotion and disease prevention advice
+- Generate answers to common patient questions
+- Create culturally appropriate educational materials
+
+#### AI-Enabled Decision Support
+- Step-by-step guidance on treatment protocols
+- Assistance with referral decisions
+- Information on available local healthcare resources
+- Support for medication management and safety checks
 
 ## System Requirements
 
 - Python 3.11+
 - OpenAI API key (for GPT-4 and TTS)
-- Anthropic API key (for Claude Opus)
+- Anthropic API key (for Claude)
 
 ## Installation
 
@@ -57,49 +70,28 @@ ANTHROPIC_API_KEY=your_anthropic_key_here
 
 ## Usage
 
-Run the main script to generate and analyze interactions:
+Run the main script:
 ```bash
 python main.py
 ```
 
 The system will:
-1. Generate synthetic healthcare dialogues if needed
-2. Create audio recordings with natural speech
+1. Generate dialogue transcripts if needed
+2. Create audio recordings
 3. Transcribe and analyze the interactions
-4. Provide detailed analysis and insights
 
 ## Project Structure
 
 - `Synthetic_Interactions/`
-  - `text/` - Generated dialogue transcripts
-  - `audio/` - Synthesized conversation audio files
+  - `text/` - Dialogue transcripts
+  - `audio/` - Conversation audio files
 - `Interaction_Analysis/`
-  - `transcriptions/` - Audio transcription results
-  - `analysis/` - Detailed interaction analysis
-
-## Technical Details
-
-### Dialogue Generation
-- Utilizes GPT-4 for creating realistic healthcare scenarios
-- Implements sophisticated prompting for authentic code-switching
-- Maintains medical accuracy and cultural sensitivity
-
-### Audio Synthesis
-- Uses OpenAI's TTS API with multiple voice profiles
-- Implements intelligent speaker detection
-- Handles natural conversation timing and pauses
-
-### Analysis Pipeline
-- Employs Claude Opus for deep semantic analysis
-- Provides insights into:
-  - Communication effectiveness
-  - Cultural competency
-  - Medical accuracy
-  - Language use patterns
+  - `transcriptions/` - Audio transcriptions
+  - `analysis/` - Interaction analysis
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+Contributions are welcome. Please submit a Pull Request with your proposed changes.
 
 ## License
 

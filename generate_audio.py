@@ -53,28 +53,25 @@ class AudioGenerator:
         return "Patient_F" if female_count >= male_count else "Patient_M"
 
     def extract_dialogues(self, transcript_path):
-        """Extract timestamped dialogues from transcript file."""
+        """Extract dialogues from transcript file, with or without timestamps."""
         with open(transcript_path, 'r', encoding='utf-8') as f:
             content = f.read()
         
-        # Get condition type from the first line and normalize it
-        first_line = content.split('\n')[0]
-        condition_type = first_line.split(': ')[1] if ': ' in first_line else None
-        if condition_type:
-            # Replace spaces with underscores and convert to lowercase
-            condition_type = condition_type.lower().replace(' ', '_')
-        
-        # Skip only the header lines (first 4 lines)
+        # Skip header lines (first 4 lines)
         lines = content.split('\n')
         dialogue_text = '\n'.join(lines[4:])
         
-        # Extract all dialogue lines with timestamps
-        pattern = r'\[(\d{2}:\d{2})\] ([^:]+): (.+)'  # Match any speaker name before the colon
-        matches = re.finditer(pattern, dialogue_text)
-        
         dialogues = []
+        
+        # Try parsing with timestamps first
+        timestamp_pattern = r'\[(\d{2}:\d{2})\] ([^:]+): (.+)'
+        matches = re.finditer(timestamp_pattern, dialogue_text)
+        
+        # If we find timestamped lines, use those
+        has_timestamped_lines = False
         for match in matches:
-            timestamp, speaker, text = match.groups()
+            has_timestamped_lines = True
+            _, speaker, text = match.groups()
             
             # Clean up any extra whitespace and quotes
             text = text.strip().strip('"\'')
@@ -87,7 +84,32 @@ class AudioGenerator:
                 'text': text
             })
         
-        return dialogues, condition_type
+        # If no timestamped lines found, try parsing without timestamps
+        if not has_timestamped_lines:
+            # Split by newlines and process each non-empty line
+            for line in dialogue_text.split('\n'):
+                line = line.strip()
+                if not line:  # Skip empty lines
+                    continue
+                    
+                # Try to split on colon for speaker and text
+                parts = line.split(':', 1)
+                if len(parts) == 2:
+                    speaker, text = parts
+                    
+                    # Clean up speaker and text
+                    speaker = speaker.strip()
+                    text = text.strip().strip('"\'')
+                    
+                    # Simplify speaker detection - if it's not BHW, it's Patient
+                    speaker = "BHW" if "BHW" in speaker else "Patient"
+                    
+                    dialogues.append({
+                        'speaker': speaker,
+                        'text': text
+                    })
+        
+        return dialogues, None
 
     def generate_audio_segment(self, text, voice):
         """Generate audio for a single dialogue line."""
@@ -106,13 +128,13 @@ class AudioGenerator:
         os.makedirs(output_dir, exist_ok=True)
         
         # Extract dialogues from transcript
-        dialogues, condition_type = self.extract_dialogues(transcript_path)
+        dialogues, _ = self.extract_dialogues(transcript_path)
         if not dialogues:
             print("No dialogues found in transcript")
             return None
         
-        # Determine patient gender based on the dialogue content and condition type
-        patient_voice_key = self.determine_patient_gender(dialogues, condition_type)
+        # Determine patient gender based on the dialogue content
+        patient_voice_key = self.determine_patient_gender(dialogues)
         print(f"\nDetected patient gender: {'Male' if patient_voice_key == 'Patient_M' else 'Female'}")
         
         print(f"\nProcessing {Path(transcript_path).name}...")
@@ -170,13 +192,9 @@ class AudioGenerator:
             # Add a short silence at the end
             final_audio += AudioSegment.silent(duration=500)
             
-            # Get sequence number from filename
-            import re
-            seq_match = re.search(r'_(\d+)', Path(transcript_path).stem)
-            seq_num = seq_match.group(1) if seq_match else "1"
-            
-            # Create output filename using condition type from file content
-            output_path = Path(output_dir) / f"{condition_type}_{seq_num}.mp3"
+            # Use the same base name as the text file
+            base_name = Path(transcript_path).stem
+            output_path = Path(output_dir) / f"{base_name}.mp3"
             
             # Export with high quality
             final_audio.export(
@@ -202,26 +220,14 @@ class AudioGenerator:
             if filename.endswith('.txt'):
                 transcript_path = os.path.join(transcript_dir, filename)
                 
-                # Extract condition type and dialogues
-                dialogues, condition_type = self.extract_dialogues(transcript_path)
-                if not condition_type:
-                    print(f"Warning: Could not determine condition type for {filename}")
-                    continue
-                
-                # Simplify condition type (remove '_disease' suffix)
-                condition_type = condition_type.replace('_disease', '')
-            
-
-                # Get sequence number from filename
-                seq_match = re.search(r'_(\d+)', filename)
-                seq_num = seq_match.group(1) if seq_match else "1"
+                # Use the same base name as the text file
+                base_name = Path(filename).stem
+                expected_audio_path = os.path.join(audio_dir, f"{base_name}.mp3")
                 
                 # Check if audio already exists
-                expected_audio_stem = f"{condition_type}_{seq_num}"
-                if expected_audio_stem in existing_audio:
+                if base_name in existing_audio:
                     print(f"\nSkipping {filename} - audio already exists")
-                    audio_path = os.path.join(audio_dir, f"{expected_audio_stem}.mp3")
-                    generated_files.append(audio_path)
+                    generated_files.append(expected_audio_path)
                     continue
                 
                 # Generate audio if it doesn't exist

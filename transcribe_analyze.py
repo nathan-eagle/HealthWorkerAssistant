@@ -112,29 +112,50 @@ Conversation transcript:
         os.makedirs("Interaction_Analysis/analysis", exist_ok=True)
         
         try:
-            # 1. Transcribe audio
-            print("Transcribing audio...")
-            raw_transcription = self.transcribe_audio(audio_file_path)
+            # Check if all files exist
+            if (os.path.exists(tagalog_trans_path) and 
+                os.path.exists(english_trans_path) and 
+                os.path.exists(analysis_path)):
+                print(f"All files already exist for {audio_filename}, skipping processing")
+                return {
+                    "audio_file": audio_file_path,
+                    "tagalog_transcription": tagalog_trans_path,
+                    "english_transcription": english_trans_path,
+                    "analysis": analysis_path
+                }
+
+            # 1. Transcribe and structure audio if Tagalog transcription doesn't exist
+            if not os.path.exists(tagalog_trans_path):
+                print("Transcribing audio...")
+                raw_transcription = self.transcribe_audio(audio_file_path)
+                print("Structuring transcription with speaker labels...")
+                tagalog_transcription = self.structure_transcription(raw_transcription)
+                with open(tagalog_trans_path, 'w', encoding='utf-8') as f:
+                    f.write(tagalog_transcription)
+            else:
+                print(f"Tagalog transcription exists, loading from {tagalog_trans_path}")
+                with open(tagalog_trans_path, 'r', encoding='utf-8') as f:
+                    tagalog_transcription = f.read()
             
-            # 2. Structure transcription with speaker labels
-            print("Structuring transcription with speaker labels...")
-            tagalog_transcription = self.structure_transcription(raw_transcription)
-            with open(tagalog_trans_path, 'w', encoding='utf-8') as f:
-                f.write(tagalog_transcription)
+            # 2. Translate to English if English transcription doesn't exist
+            if not os.path.exists(english_trans_path):
+                print("Translating to English...")
+                english_transcription = self.translate_transcription(tagalog_transcription)
+                with open(english_trans_path, 'w', encoding='utf-8') as f:
+                    f.write(english_transcription)
+            else:
+                print(f"English transcription exists, loading from {english_trans_path}")
+                with open(english_trans_path, 'r', encoding='utf-8') as f:
+                    english_transcription = f.read()
             
-            # 3. Translate to English
-            print("Translating to English...")
-            english_transcription = self.translate_transcription(tagalog_transcription)
-            with open(english_trans_path, 'w', encoding='utf-8') as f:
-                f.write(english_transcription)
-            
-            # 4. Analyze interaction
-            print("Analyzing interaction...")
-            analysis = self.analyze_interaction(english_transcription)
-            
-            # Save analysis as plain text
-            with open(analysis_path, 'w', encoding='utf-8') as f:
-                f.write(analysis)
+            # 3. Analyze interaction if analysis doesn't exist
+            if not os.path.exists(analysis_path):
+                print("Analyzing interaction...")
+                analysis = self.analyze_interaction(english_transcription)
+                with open(analysis_path, 'w', encoding='utf-8') as f:
+                    f.write(analysis)
+            else:
+                print(f"Analysis exists, loading from {analysis_path}")
             
             return {
                 "audio_file": audio_file_path,
