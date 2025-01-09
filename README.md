@@ -1,6 +1,6 @@
 # HealthWorkerCopilot 🏥
 
-An advanced AI-powered platform for generating, analyzing, and understanding healthcare worker interactions in multilingual contexts, with a specific focus on Tayabas Tagalog and the medical conditions prevalent in the Quezon province of the Philippines.
+An advanced AI-powered platform for generating, analyzing, and augmenting healthcare worker interactions in multilingual contexts, with a specific focus on Tayabas Tagalog and the medical conditions prevalent in the Quezon province of the Philippines.
 
 ## Overview
 
