@@ -1,5 +1,7 @@
 # Environment variables
 .env
+.venv
+.gitignore
 
 # Python
 __pycache__/
