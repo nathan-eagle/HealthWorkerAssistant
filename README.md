@@ -1,4 +1,4 @@
-# BHW Copilot
+# BHW Copilot 🏥
 
 An AI-powered platform designed to augment Barangay Health Worker (BHW) decision-making and patient care, built on official Department of Health (DOH) protocols and guidelines.
 
