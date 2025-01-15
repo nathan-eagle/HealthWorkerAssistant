@@ -1,0 +1,153 @@
+{
+    "protocol_type": "maternal_health",
+    "version": "2024.1",
+    "source": "DOH BHW Reference Manual 2022",
+
+    "required_assessments": {
+        "basic_vitals": {
+            "protocol": "basic_assessment",
+            "required_measurements": [
+                "blood_pressure",
+                "temperature",
+                "pulse_rate",
+                "weight"
+            ],
+            "modified_thresholds": {
+                "blood_pressure": {
+                    "alert_thresholds": {
+                        "high": {
+                            "systolic": 140,
+                            "diastolic": 90,
+                            "action": "urgent_referral",
+                            "note": "Potential pregnancy-induced hypertension"
+                        }
+                    }
+                }
+            }
+        }
+    },
+
+    "visit_schedule": {
+        "first_trimester": {
+            "frequency": "monthly",
+            "minimum_visits": 3,
+            "measurements": {
+                "required_once": [
+                    "height",
+                    "muac"
+                ]
+            }
+        },
+        "second_trimester": {
+            "frequency": "monthly",
+            "minimum_visits": 3
+        },
+        "third_trimester": {
+            "frequency": "biweekly",
+            "minimum_visits": 4,
+            "additional_measurements": [
+                "fundal_height"
+            ]
+        }
+    },
+
+    "danger_signs": {
+        "immediate_referral": [
+            {
+                "sign": "severe_headache",
+                "tagalog": "matinding sakit ng ulo",
+                "trimester_specific": "third"
+            },
+            {
+                "sign": "vaginal_bleeding",
+                "tagalog": "pagdurugo sa ari"
+            },
+            {
+                "sign": "convulsions",
+                "tagalog": "kombulsyon"
+            },
+            {
+                "sign": "decreased_fetal_movement",
+                "tagalog": "hindi gumagalaw ang sanggol",
+                "trimester_specific": "third"
+            }
+        ]
+    },
+
+    "education_topics": {
+        "first_trimester": [
+            {
+                "topic": "nutrition",
+                "key_points": [
+                    "balanced_diet",
+                    "iron_supplementation",
+                    "folic_acid"
+                ]
+            },
+            {
+                "topic": "danger_signs",
+                "key_points": [
+                    "when_to_seek_care",
+                    "emergency_contacts"
+                ]
+            }
+        ],
+        "second_trimester": [
+            {
+                "topic": "birth_planning",
+                "key_points": [
+                    "facility_delivery",
+                    "transportation_plan",
+                    "emergency_funds"
+                ]
+            }
+        ],
+        "third_trimester": [
+            {
+                "topic": "breastfeeding",
+                "key_points": [
+                    "early_initiation",
+                    "proper_positioning",
+                    "exclusive_breastfeeding"
+                ]
+            },
+            {
+                "topic": "postpartum_care",
+                "key_points": [
+                    "danger_signs",
+                    "newborn_care",
+                    "family_planning"
+                ]
+            }
+        ]
+    },
+
+    "required_interventions": {
+        "first_visit": [
+            {
+                "intervention": "tetanus_toxoid",
+                "documentation_required": true
+            }
+        ],
+        "all_visits": [
+            {
+                "intervention": "iron_supplementation",
+                "documentation_required": true
+            },
+            {
+                "intervention": "folic_acid",
+                "documentation_required": true
+            }
+        ]
+    },
+
+    "documentation_required": [
+        "gestational_age",
+        "gravida_para",
+        "last_menstrual_period",
+        "expected_delivery_date",
+        "danger_signs_assessed",
+        "education_provided",
+        "interventions_given"
+    ]
+}

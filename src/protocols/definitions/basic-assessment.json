@@ -1,0 +1,192 @@
+{
+    "protocol_type": "basic_assessment",
+    "version": "2024.1",
+    "source": "DOH BHW Reference Manual 2022",
+
+    "vital_signs": {
+        "blood_pressure": {
+            "required": true,
+            "method": "auscultatory",
+            "position": "seated",
+            "rest_period": "5_minutes",
+            "equipment": "aneroid_sphygmomanometer",
+            "normal_ranges": {
+                "systolic": {
+                    "min": 90,
+                    "max": 140,
+                    "unit": "mmHg"
+                },
+                "diastolic": {
+                    "min": 60,
+                    "max": 90,
+                    "unit": "mmHg"
+                }
+            },
+            "alert_thresholds": {
+                "crisis_high": {
+                    "systolic": 180,
+                    "diastolic": 120,
+                    "action": "immediate_referral"
+                },
+                "crisis_low": {
+                    "systolic": 90,
+                    "action": "immediate_referral"
+                }
+            }
+        },
+        "temperature": {
+            "required": true,
+            "method": "axillary",
+            "equipment": "thermometer",
+            "normal_ranges": {
+                "min": 36.1,
+                "max": 37.2,
+                "unit": "Celsius"
+            },
+            "alert_thresholds": {
+                "high": {
+                    "value": 38.0,
+                    "action": "urgent_referral"
+                },
+                "very_high": {
+                    "value": 39.0,
+                    "action": "immediate_referral"
+                },
+                "low": {
+                    "value": 35.0,
+                    "action": "immediate_referral"
+                }
+            }
+        },
+        "pulse_rate": {
+            "required": true,
+            "method": "radial",
+            "duration": "30_seconds",
+            "normal_ranges": {
+                "adult": {
+                    "min": 60,
+                    "max": 100,
+                    "unit": "beats_per_minute"
+                },
+                "child": {
+                    "min": 70,
+                    "max": 120,
+                    "unit": "beats_per_minute"
+                }
+            },
+            "alert_thresholds": {
+                "high": {
+                    "value": 120,
+                    "action": "urgent_referral"
+                },
+                "low": {
+                    "value": 50,
+                    "action": "urgent_referral"
+                }
+            }
+        },
+        "respiratory_rate": {
+            "required": true,
+            "method": "observation",
+            "duration": "30_seconds",
+            "normal_ranges": {
+                "adult": {
+                    "min": 12,
+                    "max": 20,
+                    "unit": "breaths_per_minute"
+                },
+                "child": {
+                    "min": 20,
+                    "max": 30,
+                    "unit": "breaths_per_minute"
+                }
+            },
+            "alert_thresholds": {
+                "high": {
+                    "value": 30,
+                    "action": "urgent_referral"
+                },
+                "low": {
+                    "value": 8,
+                    "action": "immediate_referral"
+                }
+            }
+        }
+    },
+
+    "anthropometric_measurements": {
+        "weight": {
+            "required": true,
+            "equipment": "weighing_scale",
+            "unit": "kilograms",
+            "precision": 0.1
+        },
+        "height": {
+            "required": false,
+            "equipment": "stadiometer",
+            "unit": "centimeters",
+            "precision": 0.5
+        },
+        "muac": {
+            "required": false,
+            "equipment": "muac_tape",
+            "unit": "centimeters",
+            "precision": 0.1,
+            "alert_thresholds": {
+                "severe_malnutrition": {
+                    "value": 11.5,
+                    "comparison": "below",
+                    "action": "immediate_referral"
+                }
+            }
+        }
+    },
+
+    "general_assessment": {
+        "consciousness": {
+            "required": true,
+            "method": "AVPU_scale",
+            "alert_thresholds": {
+                "immediate_referral": ["pain", "unresponsive"]
+            }
+        },
+        "skin": {
+            "required": true,
+            "observations": [
+                "color",
+                "temperature",
+                "moisture",
+                "turgor"
+            ]
+        }
+    },
+
+    "alert_levels": {
+        "immediate_referral": {
+            "color": "red",
+            "action": "Refer to emergency care immediately",
+            "requires_acknowledgment": true
+        },
+        "urgent_referral": {
+            "color": "orange",
+            "action": "Refer within 24 hours",
+            "requires_acknowledgment": true
+        },
+        "routine_referral": {
+            "color": "yellow",
+            "action": "Schedule clinic visit",
+            "requires_acknowledgment": true
+        }
+    },
+
+    "documentation_required": [
+        "date_and_time",
+        "bhw_name",
+        "patient_id",
+        "vital_signs",
+        "measurements_taken",
+        "general_assessment",
+        "alerts_generated",
+        "referral_details_if_any"
+    ]
+}

@@ -1,0 +1,162 @@
+{
+    "protocol_type": "communicable_disease",
+    "version": "2024.1",
+    "source": "DOH BHW Reference Manual 2022",
+
+    "required_assessments": {
+        "basic_vitals": {
+            "protocol": "basic_assessment",
+            "required_measurements": [
+                "temperature",
+                "pulse_rate",
+                "respiratory_rate"
+            ],
+            "modified_thresholds": {
+                "temperature": {
+                    "alert_thresholds": {
+                        "high": {
+                            "value": 37.8,
+                            "action": "evaluate_for_infection"
+                        }
+                    }
+                },
+                "respiratory_rate": {
+                    "alert_thresholds": {
+                        "high": {
+                            "value": 24,
+                            "action": "evaluate_respiratory_infection"
+                        }
+                    }
+                }
+            }
+        }
+    },
+
+    "diseases": {
+        "tuberculosis": {
+            "key_symptoms": [
+                {
+                    "symptom": "persistent_cough",
+                    "tagalog": "ubo nang higit sa dalawang linggo",
+                    "duration_threshold": "2_weeks",
+                    "requires_referral": true
+                },
+                {
+                    "symptom": "weight_loss",
+                    "tagalog": "pagbaba ng timbang",
+                    "requires_referral": true
+                }
+            ],
+            "required_actions": [
+                "refer_for_sputum_test",
+                "identify_close_contacts",
+                "monitor_treatment_compliance"
+            ]
+        },
+        "dengue": {
+            "key_symptoms": [
+                {
+                    "symptom": "fever",
+                    "tagalog": "lagnat",
+                    "requires_referral": true
+                },
+                {
+                    "symptom": "rash",
+                    "tagalog": "pamamantal",
+                    "timing": "after_fever",
+                    "requires_referral": true
+                }
+            ],
+            "warning_signs": [
+                {
+                    "sign": "severe_abdominal_pain",
+                    "tagalog": "matinding sakit ng tiyan",
+                    "severity": "immediate_referral"
+                },
+                {
+                    "sign": "bleeding",
+                    "tagalog": "pagdurugo",
+                    "severity": "immediate_referral"
+                }
+            ],
+            "prevention_measures": [
+                "4S_strategy",
+                "mosquito_control",
+                "early_consultation"
+            ]
+        },
+        "covid19": {
+            "key_symptoms": [
+                {
+                    "symptom": "fever",
+                    "tagalog": "lagnat",
+                    "requires_referral": true
+                },
+                {
+                    "symptom": "cough",
+                    "tagalog": "ubo",
+                    "requires_referral": true
+                }
+            ],
+            "emergency_signs": [
+                {
+                    "sign": "difficulty_breathing",
+                    "tagalog": "hirap sa paghinga",
+                    "severity": "immediate_referral"
+                }
+            ],
+            "isolation_guidelines": {
+                "duration": "7_days",
+                "conditions": [
+                    "no_symptoms_for_24_hours",
+                    "completed_isolation_period"
+                ]
+            }
+        }
+    },
+
+    "surveillance_requirements": {
+        "case_finding": {
+            "frequency": "weekly",
+            "activities": [
+                "household_visits",
+                "symptom_screening",
+                "contact_tracing"
+            ]
+        },
+        "reporting": {
+            "timeframe": "24_hours",
+            "notify": [
+                "health_center",
+                "barangay_officials"
+            ]
+        }
+    },
+
+    "prevention_education": {
+        "universal_precautions": [
+            {
+                "topic": "hand_hygiene",
+                "key_points": [
+                    "proper_handwashing",
+                    "when_to_wash"
+                ]
+            },
+            {
+                "topic": "respiratory_hygiene",
+                "key_points": [
+                    "proper_mask_wearing",
+                    "cough_etiquette"
+                ]
+            }
+        ]
+    },
+
+    "documentation_required": [
+        "symptoms_present",
+        "symptom_duration",
+        "exposure_history",
+        "household_contacts",
+        "prevention_education_provided"
+    ]
+}
