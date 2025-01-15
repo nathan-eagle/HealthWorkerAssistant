@@ -1,14 +1,9 @@
-# Environment variables
-.env
-.venv
-
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
-env/
 build/
 develop-eggs/
 dist/
@@ -27,19 +22,23 @@ wheels/
 
 # Virtual Environment
 venv/
+.venv/
 ENV/
 
-# IDE
+# IDEs
 .idea/
 .vscode/
 *.swp
 *.swo
-
-# OS
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db 
+
+# Project specific
+.env
+data/synthetic/
+data/raw/
+data/processed/
+!data/protocols/*.json
+
+# Logs
+*.log
+logs/ 
