@@ -28,6 +28,30 @@ An AI-powered platform designed to augment Barangay Health Worker (BHW) decision
 └── docs/                    # Documentation
 ```
 
+## Documentation
+
+The `docs/` directory contains essential reference materials and specifications:
+
+1. **BHW Reference Manual** (Parts 1 & 2)
+   - Comprehensive guide for Barangay Health Workers
+   - Official DOH protocols and procedures
+   - Clinical guidelines and best practices
+
+2. **Legal Framework**
+   - RA 7883: BHW Benefits and Incentives Act
+   - DILG Joint Circular on BHW Benefits
+   - Training Regulations for Barangay Health Services NC II
+
+3. **Technical Documentation**
+   - System architecture and specifications
+   - Protocol definitions and formats
+   - Integration guidelines
+
+4. **Research Papers**
+   - Recent studies on BHW effectiveness
+   - Healthcare delivery in rural Philippines
+   - Technology integration in community health
+
 ## Operation Modes
 
 ### 1. Synthetic Testing Mode
