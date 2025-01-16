@@ -15,6 +15,39 @@ class DialogueGenerator:
 
     def create_dialogue_prompt(self, condition_type):
         """Create a prompt for generating a Tagalog dialogue."""
+        
+        # Define condition-specific exam components
+        exam_components = {
+            "prenatal": """
+- Blood pressure measurement
+- Weight and height
+- Fundal height measurement
+- Fetal heart rate check
+- Checking for edema
+- Abdominal examination
+- Basic urinalysis results discussion""",
+            
+            "communicable_disease": """
+- Temperature reading
+- Heart rate and respiratory rate
+- Lung sounds assessment
+- Lymph node examination
+- Throat examination (if relevant)
+- Skin examination (if relevant)
+- Basic neurological check""",
+            
+            "non_communicable_disease": """
+- Blood pressure measurement
+- Heart rate and rhythm check
+- Lung sounds assessment
+- Basic cardiovascular exam
+- Weight and BMI calculation
+- Blood sugar reading (if diabetic)
+- Peripheral pulse check"""
+        }
+        
+        exam_section = exam_components.get(condition_type.replace('_disease', ''), "")
+        
         return f"""Generate a realistic 15-minute dialogue between a Barangay Health Worker (BHW) and a patient in Quezon Province, Philippines. The dialogue should be in Tagalog (Tayabas dialect).
 
 Context:
@@ -25,15 +58,27 @@ Context:
 - The conversation MUST continue with substance until [14:55] or later
 - Use natural Tagalog (Tayabas dialect) as spoken in Quezon Province, including common local expressions and medical terms as understood by locals
 
+Physical Examination Components to Include:
+{exam_components.get(condition_type.replace('_disease', ''), '')}
+
 Required conversation structure (MUST follow these time allocations):
 1. [00:00-02:00] Initial greetings and rapport building
-2. [02:00-06:00] Comprehensive symptom assessment and detailed medical history
-3. [06:00-09:00] Thorough discussion of lifestyle factors and family background
-4. [09:00-12:00] Detailed health education and advice specific to the condition
-5. [12:00-15:00] Clear follow-up plans, recommendations, and proper closing
+2. [02:00-05:00] Comprehensive symptom assessment and detailed medical history
+3. [05:00-08:00] Physical examination with clear verbal confirmation of measurements and findings
+4. [08:00-11:00] Thorough discussion of lifestyle factors and family background
+5. [11:00-13:00] Detailed health education and advice specific to the condition
+6. [13:00-15:00] Clear follow-up plans, recommendations, and proper closing
 
 Format each line as:
-[MM:SS] Speaker: Dialogue text"""
+[MM:SS] Speaker: Dialogue text
+
+Important Physical Exam Guidelines:
+- BHW must verbally confirm all measurements and findings with the patient
+- Include realistic values appropriate for the condition
+- Explain each examination step to the patient
+- Document patient's responses and any discomfort
+- Use proper medical terminology while explaining in simple terms
+- Include any relevant patient education during the examination"""
 
     def get_next_sequence_number(self, condition_type):
         """Get the next sequence number for a given condition type."""
