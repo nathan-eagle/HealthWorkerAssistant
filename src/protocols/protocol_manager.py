@@ -1,6 +1,8 @@
 import json
 from pathlib import Path
 from typing import Dict, Any, Optional
+from anthropic import Anthropic
+import os
 
 class ProtocolManager:
     """Manages loading and accessing BHW protocol definitions."""
@@ -9,6 +11,7 @@ class ProtocolManager:
         self.protocols_dir = Path(__file__).parent / "definitions"
         self.protocols: Dict[str, Any] = {}
         self._load_all_protocols()
+        self.claude = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
     
     def _load_all_protocols(self):
         """Load all protocol JSON files from the definitions directory."""
@@ -65,40 +68,65 @@ class ProtocolManager:
         return protocol.get('education_topics', []) if protocol else []
     
     def validate_interaction(self, condition_type: str, interaction_data: Dict[str, Any]) -> Dict[str, Any]:
-        """Validate an interaction against the relevant protocol."""
+        """Validate an interaction against the relevant protocol using LLM-based analysis."""
         protocol = self.get_protocol(f"{condition_type}-disease" if condition_type != 'prenatal' else 'maternal-health')
         if not protocol:
             return {"valid": False, "errors": ["Unknown condition type"]}
-            
-        validation = {
-            "valid": True,
-            "missing_measurements": [],
-            "missing_topics": [],
-            "detected_danger_signs": [],
-            "recommendations": []
+
+        # Prepare protocol requirements for LLM analysis
+        protocol_info = {
+            "required_measurements": protocol.get('required_measurements', []),
+            "education_topics": protocol.get('education_topics', []),
+            "danger_signs": protocol.get('danger_signs', [])
         }
-        
-        # Check required measurements
-        required_measurements = protocol.get('required_measurements', [])
-        for measurement in required_measurements:
-            if measurement not in interaction_data.get('measurements', []):
-                validation['missing_measurements'].append(measurement)
-        
-        # Check education topics
-        required_topics = protocol.get('education_topics', [])
-        for topic in required_topics:
-            if topic not in interaction_data.get('covered_topics', []):
-                validation['missing_topics'].append(topic)
-        
-        # Check for danger signs
-        danger_signs = protocol.get('danger_signs', [])
-        for sign in danger_signs:
-            if sign in interaction_data.get('symptoms', []):
-                validation['detected_danger_signs'].append(sign)
-        
-        # Update validity
-        validation['valid'] = not (validation['missing_measurements'] or 
-                                 validation['missing_topics'] or 
-                                 validation['detected_danger_signs'])
-        
-        return validation 
+
+        # Ask Claude to analyze the interaction against protocol requirements
+        response = self.claude.messages.create(
+            model="claude-3-opus-20240229",
+            max_tokens=1000,
+            messages=[{
+                "role": "user",
+                "content": f"""Analyze this health interaction data against the protocol requirements.
+Consider Filipino terms, variations in descriptions, and semantic meaning rather than exact matches.
+
+Protocol Requirements:
+{json.dumps(protocol_info, indent=2)}
+
+Interaction Data:
+{json.dumps(interaction_data, indent=2)}
+
+Provide analysis results in this JSON format:
+{{
+    "missing_measurements": [], // Required measurements not taken/mentioned
+    "missing_topics": [], // Required education topics not covered
+    "detected_danger_signs": [], // Identified danger signs from symptoms
+    "recommendations": [] // List of guidance points based on findings
+}}
+
+For recommendations, provide clear, actionable guidance points that consider:
+1. Semantic matching (e.g. "blood pressure" matches "BP", "presyon")
+2. Filipino terms and code-switching
+3. Implicit mentions and context
+4. Cultural health practices
+
+Each recommendation should be a clear, complete statement without any special formatting."""
+            }]
+        )
+
+        try:
+            validation_results = json.loads(response.content[0].text)
+            validation_results["valid"] = not (
+                validation_results["missing_measurements"] or 
+                validation_results["missing_topics"] or 
+                validation_results["detected_danger_signs"]
+            )
+            return validation_results
+        except json.JSONDecodeError:
+            return {
+                "valid": False,
+                "missing_measurements": [],
+                "missing_topics": [],
+                "detected_danger_signs": [],
+                "recommendations": [],
+                "errors": ["Failed to parse validation results"]
+            } 
