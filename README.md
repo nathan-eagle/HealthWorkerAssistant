@@ -1,192 +1,129 @@
 # BHW Copilot 🏥
 
-An AI-powered platform designed to augment Barangay Health Worker (BHW) decision-making and patient care, built on official Department of Health (DOH) protocols and guidelines.
+An AI-powered platform to enhance Barangay Health Worker decision-making and patient care.
 
-## Project Structure
+## Overview
 
-```
-├── src/
-│   ├── voice_processing/      # Real-time audio capture and processing
-│   ├── continuous_analysis/   # Transcription, translation, and analysis
-│   ├── real_time_guidance/    # Protocol-based BHW prompts
-│   ├── post_interaction/      # Quality assessment and feedback
-│   ├── data_management/       # Storage and synchronization
-│   ├── protocols/            # Clinical protocol definitions
-│   ├── synthetic/            # Test data generation
-│   └── frontend/             # Web interface components
-├── tests/                    # Test suites
-├── data/
-│   ├── synthetic/           # Generated test data
-│   │   ├── text/           # Generated dialogues
-│   │   └── audio/          # Synthesized speech
-│   ├── raw/                # Real BHW recordings
-│   │   └── audio/          # Actual patient interactions
-│   ├── processed/          # Analysis outputs
-│   │   ├── transcriptions/ # Transcripts and translations
-│   │   └── analysis/       # Interaction assessments
-│   └── protocols/          # Protocol JSON definitions
-└── docs/                    # Documentation
-```
+BHW Copilot is a comprehensive support system that assists Barangay Health Workers in providing healthcare services to their communities. The system uses advanced AI to process health interactions in both English and Filipino, providing real-time guidance based on Department of Health (DOH) protocols.
 
-## Documentation
+## Protocol Implementation
 
-The `docs/` directory contains essential reference materials and specifications:
+The system implements DOH protocols through a structured, codified approach:
 
-1. **BHW Reference Manual** (Parts 1 & 2)
-   - Comprehensive guide for Barangay Health Workers
-   - Official DOH protocols and procedures
-   - Clinical guidelines and best practices
+### Basic Assessment Protocol (`basic-assessment.json`)
+- Initial vital signs and measurements required for all patient interactions
+- Standard health assessment questions and observations
+- Early warning signs that require immediate attention
+- Guidance for determining the appropriate care pathway
 
-2. **Legal Framework**
-   - RA 7883: BHW Benefits and Incentives Act
-   - DILG Joint Circular on BHW Benefits
-   - Training Regulations for Barangay Health Services NC II
+### Maternal Health Protocol (`maternal-health.json`)
+- Trimester-specific assessments and measurements
+- Required prenatal check-up components
+- Nutrition and lifestyle guidance
+- Danger signs requiring immediate medical attention
+- Educational topics for each stage of pregnancy
+- Risk factor monitoring and management
 
-3. **Technical Documentation**
-   - System architecture and specifications
-   - Protocol definitions and formats
-   - Integration guidelines
+### Communicable Disease Protocol (`communicable-disease.json`)
+- Symptom assessment and documentation
+- Contact tracing requirements
+- Isolation and quarantine guidelines
+- Disease-specific warning signs
+- Community health protection measures
+- Patient education and prevention strategies
 
-4. **Research Papers**
-   - Recent studies on BHW effectiveness
-   - Healthcare delivery in rural Philippines
-   - Technology integration in community health
-
-## Operation Modes
-
-### 1. Synthetic Testing Mode
-For initial development and testing using AI-generated conversations:
-```bash
-python src/main.py --mode=synthetic
-```
-- Generates realistic BHW-patient dialogues in Tagalog with code-switching
-- Creates multi-voice audio using OpenAI TTS
-- Tests full analysis pipeline with synthetic data
-- Useful for protocol validation and system testing
-
-### 2. Testing Mode with Real Recordings
-For testing with actual BHW-patient interactions (pre-recorded):
-```bash
-python src/main.py --mode=testing
-```
-- Processes real audio recordings from past interactions
-- Performs full transcription and analysis
-- Validates protocol compliance
-- Helps refine the guidance engine with real data
-
-### 3. Production Mode
-For live deployment with real-time BHW interactions:
-```bash
-python src/main.py --mode=production
-```
-- Captures live audio from BHW's phone
-- Provides real-time transcription and guidance
-- Monitors protocol adherence
-- Stores interactions for later analysis
+### Non-Communicable Disease Protocol (`noncommunicable-disease.json`)
+- Chronic condition assessment guidelines
+- Required regular measurements (BP, blood sugar, etc.)
+- Lifestyle modification recommendations
+- Medication adherence monitoring
+- Complication warning signs
+- Long-term management strategies
 
 ## Key Features
 
-1. **Voice Processing**
-   - Real-time speech recognition (Whisper)
-   - Multilingual support with code-switching (Tagalog/English)
-   - Voice activity detection
-   - Multiple speaker identification
+### Bilingual Support
+- Real-time processing of conversations in both Filipino and English
+- Context-aware translation of medical terminology
+- Culturally appropriate health guidance
+- Code-switching support for natural communication
 
-2. **Continuous Analysis**
-   - Real-time transcription
-   - Code-switching translation
-   - Protocol compliance checking
-   - Risk assessment
+### Protocol-Based Guidance
+- Real-time analysis of patient interactions
+- Automatic protocol selection based on condition type
+- Structured guidance generation:
+  - Symptom-specific recommendations
+  - Required measurements and assessments
+  - Educational topics to cover
+  - Risk factor monitoring
+  - Danger sign alerts
 
-3. **Real-Time Guidance**
-   - Context-aware prompts
-   - Protocol-based suggestions
-   - Danger sign alerts
-   - Bilingual guidance
+### LLM-Enhanced Analysis
+- Semantic understanding of health conversations
+- Context-aware symptom analysis
+- Natural language processing for Filipino medical terms
+- Intelligent protocol matching and validation
 
-4. **Post-Interaction Analysis**
-   - Visit quality assessment
-   - Learning recommendations
-   - Follow-up planning
-   - Cultural competency evaluation
+### Voice Processing
+- Real-time audio transcription
+- Speaker diarization for conversation tracking
+- Support for both Filipino and English speech
+- Background noise handling for field conditions
+
+## Usage
+
+### Testing Mode
+```bash
+# Test with a specific transcript
+python src/main.py --transcript path/to/transcript.txt
+
+# Run with synthetic test data
+python src/main.py --mode synthetic
+
+# Test with real recordings
+python src/main.py --mode testing
+```
+
+### Production Mode
+```bash
+# Run in production mode with live audio
+python src/main.py --mode production
+```
+
+## Output Format
+
+The system provides guidance in both Filipino and English, structured as follows:
+
+### Tagalog Section
+- Gabay para sa mga Sintomas (Symptom-specific guidance)
+- Kulang na Impormasyon (Missing information)
+- Mga Palatandaan ng Panganib (Danger signs)
+- Mga Paksang Pang-edukasyon (Education topics)
+- Mga Mungkahi ayon sa Protokol (Protocol suggestions)
+
+### English Section
+- Symptom-specific Guidance
+- Missing Information
+- Danger Signs
+- Education Topics
+- Protocol Suggestions
 
 ## Setup
 
-1. Create a virtual environment:
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-```
-
-2. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
-
-3. Configure environment variables:
-```bash
-cp .env.example .env
-```
-
-Required environment variables:
-```
-OPENAI_API_KEY=your_openai_key    # For GPT-4, Whisper, and TTS
-ANTHROPIC_API_KEY=your_claude_key # For analysis and translation
-```
-
-## Development Workflow
-
-1. **Initial Testing with Synthetic Data**
-```bash
-# Generate test data
-python src/main.py --mode=synthetic
-
-# Check generated files in:
-data/synthetic/text/     # Generated dialogues
-data/synthetic/audio/    # Synthesized conversations
-data/processed/         # Analysis results
-```
-
-2. **Testing with Real Recordings**
-```bash
-# Place audio files in:
-data/raw/audio/
-
-# Process recordings
-python src/main.py --mode=testing
-```
-
-3. **Production Deployment**
-```bash
-# Start the live system
-python src/main.py --mode=production
-```
-
-## Data Flow
-
-1. **Audio Capture**
-   - Real-time recording (production mode)
-   - Pre-recorded files (testing mode)
-   - Synthetic generation (synthetic mode)
-
-2. **Processing Pipeline**
-   - Speech recognition (Whisper)
-   - Speaker identification
-   - Code-switching translation (Claude)
-   - Protocol compliance checking
-   - Real-time guidance generation
-
-3. **Storage and Analysis**
-   - Secure audio storage
-   - Structured transcripts
-   - Analysis reports
-   - Follow-up recommendations
+1. Clone the repository
+2. Install dependencies: `pip install -r requirements.txt`
+3. Set up environment variables:
+   ```
+   OPENAI_API_KEY=your_key_here
+   ANTHROPIC_API_KEY=your_key_here
+   ```
+4. Create necessary directories: `python src/main.py`
 
 ## Contributing
 
-Please see [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines.
+We welcome contributions to enhance the protocol implementations, improve language processing, or add new features. Please see our contributing guidelines for more information.
 
 ## License
 
-This project is licensed under the terms of the MIT license. See [LICENSE](LICENSE) for details.
+This project is licensed under the MIT License - see the LICENSE file for details.
 
