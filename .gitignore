@@ -22,23 +22,26 @@ wheels/
 
 # Virtual Environment
 venv/
-.venv/
 ENV/
+env/
 
-# IDEs
+# IDE
 .idea/
 .vscode/
 *.swp
 *.swo
-.DS_Store
+
+# Environment variables
+.env
 
 # Project specific
-.env
-data/synthetic/
-data/raw/
-data/processed/
-!data/protocols/*.json
+data/synthetic/audio/
+data/raw/audio/
+data/processed/transcriptions/
+data/processed/analysis/
 
-# Logs
-*.log
-logs/ 
+# OS specific
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db 

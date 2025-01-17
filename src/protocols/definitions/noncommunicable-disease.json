@@ -1,0 +1,241 @@
+{
+    "protocol_type": "noncommunicable_disease",
+    "version": "2024.1",
+    "source": "DOH BHW Reference Manual 2022",
+
+    "required_assessments": {
+        "basic_vitals": {
+            "protocol": "basic_assessment",
+            "required_measurements": [
+                "blood_pressure",
+                "pulse_rate",
+                "weight",
+                "height"
+            ],
+            "modified_thresholds": {
+                "blood_pressure": {
+                    "classification": {
+                        "normal": {
+                            "systolic": {"max": 120},
+                            "diastolic": {"max": 80}
+                        },
+                        "elevated": {
+                            "systolic": {"min": 120, "max": 129},
+                            "diastolic": {"max": 80}
+                        },
+                        "stage_1": {
+                            "systolic": {"min": 130, "max": 139},
+                            "diastolic": {"min": 80, "max": 89},
+                            "action": "refer_for_evaluation"
+                        },
+                        "stage_2": {
+                            "systolic": {"min": 140},
+                            "diastolic": {"min": 90},
+                            "action": "urgent_referral"
+                        },
+                        "crisis": {
+                            "systolic": {"min": 180},
+                            "diastolic": {"min": 120},
+                            "action": "immediate_referral"
+                        }
+                    },
+                    "monitoring_frequency": {
+                        "normal": "yearly",
+                        "elevated": "6_months",
+                        "diagnosed": "monthly"
+                    }
+                }
+            }
+        }
+    },
+
+    "diseases": {
+        "hypertension": {
+            "screening": {
+                "frequency": {
+                    "standard": "yearly",
+                    "high_risk": "6_months"
+                },
+                "high_risk_factors": [
+                    "family_history",
+                    "obesity",
+                    "smoking",
+                    "age_above_40"
+                ]
+            },
+            "warning_signs": [
+                {
+                    "sign": "severe_headache",
+                    "tagalog": "matinding sakit ng ulo",
+                    "severity": "immediate_referral"
+                },
+                {
+                    "sign": "chest_pain",
+                    "tagalog": "sakit sa dibdib",
+                    "severity": "immediate_referral"
+                },
+                {
+                    "sign": "difficulty_breathing",
+                    "tagalog": "hirap sa paghinga",
+                    "severity": "immediate_referral"
+                }
+            ],
+            "management_support": {
+                "medication_compliance": "monitor_monthly",
+                "lifestyle_modifications": [
+                    "reduce_salt_intake",
+                    "regular_exercise",
+                    "stress_management",
+                    "smoking_cessation"
+                ]
+            }
+        },
+        "diabetes": {
+            "screening": {
+                "target_groups": [
+                    "family_history",
+                    "obese",
+                    "hypertensive",
+                    "age_above_40"
+                ],
+                "symptoms": [
+                    {
+                        "symptom": "frequent_urination",
+                        "tagalog": "madalas na pag-ihi",
+                        "requires_referral": true
+                    },
+                    {
+                        "symptom": "excessive_thirst",
+                        "tagalog": "labis na pagkauhaw",
+                        "requires_referral": true
+                    },
+                    {
+                        "symptom": "unexplained_weight_loss",
+                        "tagalog": "pagbaba ng timbang",
+                        "requires_referral": true
+                    }
+                ],
+                "emergency_signs": [
+                    {
+                        "sign": "loss_of_consciousness",
+                        "tagalog": "pagkawala ng malay",
+                        "severity": "immediate_referral"
+                    },
+                    {
+                        "sign": "confusion",
+                        "tagalog": "pagkalito",
+                        "severity": "immediate_referral"
+                    }
+                ]
+            },
+            "monitoring": {
+                "diagnosed_cases": {
+                    "frequency": "monthly",
+                    "check_for": [
+                        "medication_compliance",
+                        "blood_sugar_monitoring",
+                        "foot_examination",
+                        "dietary_compliance"
+                    ]
+                }
+            }
+        },
+        "cancer": {
+            "breast_cancer": {
+                "screening_education": {
+                    "breast_self_examination": {
+                        "frequency": "monthly",
+                        "target_age": "25_and_above",
+                        "warning_signs": [
+                            "breast_lumps",
+                            "nipple_changes",
+                            "skin_changes"
+                        ]
+                    }
+                },
+                "referral_criteria": [
+                    "found_lump",
+                    "nipple_discharge",
+                    "breast_skin_changes"
+                ]
+            },
+            "cervical_cancer": {
+                "screening_education": {
+                    "target_age": "25_to_65",
+                    "screening_methods": [
+                        "pap_smear",
+                        "via_screening"
+                    ],
+                    "warning_signs": [
+                        "irregular_bleeding",
+                        "postmenopausal_bleeding",
+                        "unusual_discharge"
+                    ]
+                }
+            }
+        }
+    },
+
+    "lifestyle_interventions": {
+        "diet": {
+            "recommendations": [
+                "balanced_meals",
+                "portion_control",
+                "reduce_salt",
+                "limit_sugar",
+                "increase_vegetables"
+            ],
+            "education_frequency": "each_visit"
+        },
+        "physical_activity": {
+            "recommendations": [
+                "30_minutes_daily",
+                "moderate_intensity",
+                "regular_walking"
+            ],
+            "contraindications": [
+                "severe_hypertension",
+                "unstable_angina",
+                "acute_illness"
+            ]
+        },
+        "smoking_cessation": {
+            "counseling_points": [
+                "health_risks",
+                "quit_strategies",
+                "support_resources"
+            ],
+            "referral_criteria": [
+                "ready_to_quit",
+                "failed_attempts"
+            ]
+        }
+    },
+
+    "follow_up": {
+        "diagnosed_cases": {
+            "hypertension": {
+                "stable": "monthly",
+                "uncontrolled": "weekly"
+            },
+            "diabetes": {
+                "stable": "monthly",
+                "uncontrolled": "weekly"
+            }
+        },
+        "screening": {
+            "normal": "yearly",
+            "high_risk": "6_months"
+        }
+    },
+
+    "documentation_required": [
+        "risk_factors_present",
+        "symptoms_assessed",
+        "measurements_taken",
+        "lifestyle_assessment",
+        "education_provided",
+        "medication_compliance",
+        "follow_up_plan"
+    ]
+}

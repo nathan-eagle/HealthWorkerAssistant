@@ -1,0 +1,63 @@
+Condition Type: communicable disease
+Language: Tagalog
+Generated on: 2025-01-08 19:57:03
+
+[00:00] BHW: Magandang hapon po, ako po si Aling Linda, ang inyong Barangay Health Worker. Kumusta na po ang pakiramdam ninyo ngayon?
+
+[00:30] Pasiente: Magandang hapon rin po, Aling Linda. Medyo mahina pa rin ang pakiramdam ko, parang laging pagod.
+
+[01:00] BHW: Ako po'y narito para alamin ang inyong kalagayan at magbigay ng tulong medikal. Baka po may kailangan pa kayong sabihin sa akin tungkol sa inyong sakit?
+
+[01:30] Pasiente: Salamat po sa inyong pagbibisita, Aling Linda. Matagal na rin po akong hindi nakakapunta sa klinika dahil sa aking kalagayan.
+
+[02:00] BHW: Unawain po natin ang mga sintomas ninyo. Ano-ano po ang mga nararamdaman ninyo? 
+
+[02:30] Pasiente: Laging po akong nanghihina, may ubo at sipon, at madalas rin pong masakit ang aking tiyan.
+
+[03:00] BHW: Gaano na po katagal ninyong nararamdaman ang mga ito?
+
+[03:30] Pasiente: Mga dalawang linggo na rin po, Aling Linda.
+
+[04:00] BHW: Mayroon po ba kayong kasaysayan ng ganitong sakit o mayroon sa inyong pamilya?
+
+[04:30] Pasiente: Wala naman po sa alam ko, Aling Linda. Pero ang kapatid ko po ay may TB.
+
+[05:00] BHW: Salamat po sa impormasyon. Sa inyong mga sintomas, maaaring mayroon kayong TB o Tuberculosis. 
+
+[06:00] BHW: Maaaring nakukuha ito sa pamamagitan ng pag-ubo o pagbahing ng isang taong may TB. Paano po ang inyong pamumuhay?
+
+[06:30] Pasiente: Simple lang naman po kami, Aling Linda. Nagtatrabaho po ako sa palengke, at madalas po akong nakakasalamuha ng iba't-ibang tao.
+
+[07:00] BHW: Ang mga taong palaging nakakasalamuha ng iba-iba ay maaaring mahawa ng TB. Kasama po ba kayo sa mga naninigarilyo o umiinom ng alak?
+
+[07:30] Pasiente: Hindi po ako naninigarilyo, Aling Linda. Pero paminsan-minsan po umiinom ako ng alak.
+
+[08:00] BHW: Ang paninigarilyo at pag-inom ng alak ay maaaring magdulot ng mas malalang sakit. Kailangan po nating itigil ang mga ito.
+
+[08:30] Pasiente: Opo, Aling Linda. Susubukan ko po itigil ang pag-inom ng alak.
+
+[09:00] BHW: Ang TB ay maaaring malunasan. Kailangan po ninyong uminom ng gamot na ibibigay ng doktor nang walang palya para siguradong magamot ang sakit.
+
+[09:30] Pasiente: Ano po ba ang mga dapat kong gawin para hindi mahawa ang aking pamilya?
+
+[10:00] BHW: Kailangan po ninyong magsuot ng mask kapag nasa loob ng bahay o kapag nakakasalamuha ang inyong pamilya. 
+
+[10:30] BHW: At kailangan po rin ninyong maghugas ng kamay palagi. Ito'y para hindi makahawa ng sakit sa iba.
+
+[11:00] Pasiente: Salamat po sa mga payo ninyo, Aling Linda. Susundin ko po ang mga ito.
+
+[11:30] BHW: Ipagpatuloy po ninyo ang pag-inom ng inyong mga gamot at sundin ang mga payong binigay ko. 
+
+[12:00] BHW: Bibisitahin ko po kayo ulit sa susunod na linggo para makita kung may pagbabago sa inyong kalagayan.
+
+[12:30] Pasiente: Opo, Aling Linda. Salamat po sa inyong tulong.
+
+[13:00] BHW: Kung mayroon po kayong nararamdaman na hindi maganda, wag po kayong mag-atubiling tumawag sa akin o sa iba pang mga BHW.
+
+[13:30] BHW: Ang inyong kalusugan ay mahalaga sa amin. Mag-ingat po kayo palagi.
+
+[14:00] Pasiente: Salamat po ulit, Aling Linda. Mag-iingat din po ako.
+
+[14:30] BHW: Sa susunod po nating pagkikita, inaasahan ko po na mas maganda na ang inyong pakiramdam. 
+
+[14:55] BHW: Magandang hapon po at ingat po palagi. Maaari po ninyong tawagan ang aming opisina kung mayroon pa po kayong katanungan o pangangailangan.

@@ -1,0 +1,1 @@
+# BHW Copilot package

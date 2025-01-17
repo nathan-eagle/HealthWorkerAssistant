@@ -1,129 +1,136 @@
 # BHW Copilot 🏥
 
-An AI-powered platform to enhance Barangay Health Worker decision-making and patient care.
+An AI-powered platform that enhances Barangay Health Worker interactions by providing minimally intrusive, protocol-based guidance.
 
 ## Overview
 
-BHW Copilot is a comprehensive support system that assists Barangay Health Workers in providing healthcare services to their communities. The system uses advanced AI to process health interactions in both English and Filipino, providing real-time guidance based on Department of Health (DOH) protocols.
-
-## Protocol Implementation
-
-The system implements DOH protocols through a structured, codified approach:
-
-### Basic Assessment Protocol (`basic-assessment.json`)
-- Initial vital signs and measurements required for all patient interactions
-- Standard health assessment questions and observations
-- Early warning signs that require immediate attention
-- Guidance for determining the appropriate care pathway
-
-### Maternal Health Protocol (`maternal-health.json`)
-- Trimester-specific assessments and measurements
-- Required prenatal check-up components
-- Nutrition and lifestyle guidance
-- Danger signs requiring immediate medical attention
-- Educational topics for each stage of pregnancy
-- Risk factor monitoring and management
-
-### Communicable Disease Protocol (`communicable-disease.json`)
-- Symptom assessment and documentation
-- Contact tracing requirements
-- Isolation and quarantine guidelines
-- Disease-specific warning signs
-- Community health protection measures
-- Patient education and prevention strategies
-
-### Non-Communicable Disease Protocol (`noncommunicable-disease.json`)
-- Chronic condition assessment guidelines
-- Required regular measurements (BP, blood sugar, etc.)
-- Lifestyle modification recommendations
-- Medication adherence monitoring
-- Complication warning signs
-- Long-term management strategies
+BHW Copilot processes health worker-patient conversations in real-time, comparing them against Department of Health (DOH) protocols to provide relevant guidance while respecting BHW expertise. The system focuses on three key areas:
+- Prenatal care
+- Communicable diseases
+- Non-communicable diseases
 
 ## Key Features
 
-### Bilingual Support
-- Real-time processing of conversations in both Filipino and English
-- Context-aware translation of medical terminology
+### Minimally Intrusive Design
+- Simple audio recording interface
+- Alerts only for critical danger signs
+- Post-interaction guidance review
+- Manual verification and editing of captured data
+
+### Protocol-Based Analysis
+- Real-time processing of health conversations
+- Automatic extraction of:
+  * Symptoms and complaints
+  * Vital signs and measurements
+  * Risk factors
+  * Current medications
+  * Recent health history
+- Comparison against DOH protocols
+- Generation of:
+  * Missing information checklist
+  * Symptom-specific guidance
+  * Education topic suggestions
+  * Protocol recommendations
+
+### Multilingual Support
+- Handles Tagalog, English, and code-switching
+- Context-aware medical terminology processing
 - Culturally appropriate health guidance
-- Code-switching support for natural communication
+- Natural language understanding for Filipino medical terms
 
-### Protocol-Based Guidance
-- Real-time analysis of patient interactions
-- Automatic protocol selection based on condition type
-- Structured guidance generation:
-  - Symptom-specific recommendations
-  - Required measurements and assessments
-  - Educational topics to cover
-  - Risk factor monitoring
-  - Danger sign alerts
+### Offline Capabilities
+- Local audio processing
+- Offline transcription
+- Local protocol storage and matching
+- Secure data handling
 
-### LLM-Enhanced Analysis
-- Semantic understanding of health conversations
-- Context-aware symptom analysis
-- Natural language processing for Filipino medical terms
-- Intelligent protocol matching and validation
+## System Requirements
 
-### Voice Processing
-- Real-time audio transcription
-- Speaker diarization for conversation tracking
-- Support for both Filipino and English speech
-- Background noise handling for field conditions
+### Hardware
+- Android/iOS smartphone with:
+  * Adequate microphone
+  * Sufficient storage for offline models
+  * Full-day battery life
+
+### Software Dependencies
+- Python 3.11+
+- OpenAI API key (for GPT-4 and Whisper)
+- Anthropic API key (for Claude)
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/bhw-copilot.git
+cd bhw-copilot
+```
+
+2. Install dependencies:
+```bash
+pip install -r requirements.txt
+```
+
+3. Create a `.env` file with your API keys:
+```
+OPENAI_API_KEY=your_openai_key_here
+ANTHROPIC_API_KEY=your_anthropic_key_here
+```
 
 ## Usage
 
 ### Testing Mode
 ```bash
-# Test with a specific transcript
-python src/main.py --transcript path/to/transcript.txt
+# Test with sample transcripts
+python src/main.py --mode test
 
-# Run with synthetic test data
+# Generate and test with synthetic data
 python src/main.py --mode synthetic
-
-# Test with real recordings
-python src/main.py --mode testing
 ```
 
 ### Production Mode
 ```bash
-# Run in production mode with live audio
+# Run with real-time audio processing
 python src/main.py --mode production
 ```
 
 ## Output Format
 
-The system provides guidance in both Filipino and English, structured as follows:
+The system provides analysis output containing:
+```
+Extracted Information:
+- Condition type
+- Measurements
+- Symptoms
+- Covered topics
+- Risk factors
+- Trimester (if applicable)
+- Danger signs
 
-### Tagalog Section
-- Gabay para sa mga Sintomas (Symptom-specific guidance)
-- Kulang na Impormasyon (Missing information)
-- Mga Palatandaan ng Panganib (Danger signs)
-- Mga Paksang Pang-edukasyon (Education topics)
-- Mga Mungkahi ayon sa Protokol (Protocol suggestions)
+Realtime Alerts:
+- Critical danger signs requiring immediate attention
 
-### English Section
-- Symptom-specific Guidance
-- Missing Information
-- Danger Signs
-- Education Topics
-- Protocol Suggestions
+Missing Information:
+- Required measurements not yet taken
+- Protocol-required questions not yet asked
 
-## Setup
+Symptom-specific Guidance:
+- Recommendations based on reported symptoms
 
-1. Clone the repository
-2. Install dependencies: `pip install -r requirements.txt`
-3. Set up environment variables:
-   ```
-   OPENAI_API_KEY=your_key_here
-   ANTHROPIC_API_KEY=your_key_here
-   ```
-4. Create necessary directories: `python src/main.py`
+Education Topics:
+- Suggested health education topics to cover
+
+Protocol Suggestions:
+- Next steps based on DOH protocols
+```
 
 ## Contributing
 
-We welcome contributions to enhance the protocol implementations, improve language processing, or add new features. Please see our contributing guidelines for more information.
+We welcome contributions! Key areas include:
+- Protocol implementation improvements
+- Language processing enhancements
+- UI/UX refinements
+- Documentation updates
 
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
-

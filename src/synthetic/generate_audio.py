@@ -6,6 +6,7 @@ import json
 from datetime import datetime
 from pydub import AudioSegment
 import tempfile
+from anthropic import Anthropic
 
 class AudioGenerator:
     def __init__(self, api_key=None):
@@ -25,43 +26,40 @@ class AudioGenerator:
             print("Prenatal condition detected - setting patient gender to Female")
             return "Patient_F"
 
-        # Join all dialogue text for better context
-        text = ' '.join(d['text'].lower() for d in dialogues)
+        # Join dialogue text for analysis
+        dialogue_text = '\n'.join(f"{d.get('speaker', 'Unknown')}: {d.get('text', '')}" for d in dialogues)
         
-        # Common Filipino gender indicators
-        male_indicators = [
-            'kuya', 'sir', 'tatay', 'tito', 'manong', 'binata',
-            'lalaki', 'papa', 'itay', 'uncle', 'brother', 'mr.',
-            'ginoong', 'ginoo'
-        ]
-        female_indicators = [
-            'ate', 'maam', 'nanay', 'tita', 'manang', 'aling',
-            'binibini', 'babae', 'mama', 'inay', 'miss', 'mrs.',
-            'ginang', 'ms.', 'madam'
-        ]
+        # Use Claude to analyze the dialogue
+        client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+        response = client.messages.create(
+            model="claude-3-opus-20240229",
+            max_tokens=100,
+            messages=[{
+                "role": "user",
+                "content": f"""Analyze this medical conversation between a BHW and patient. Determine the patient's gender based on context clues, pronouns, terms of address, and cultural indicators.
+
+Consider:
+1. Filipino terms of address (e.g., ate, kuya)
+2. Pronouns used
+3. Context of the conversation
+4. Cultural indicators
+
+Respond with EXACTLY one word: "male" or "female"
+
+Conversation:
+{dialogue_text}"""
+            }]
+        )
         
-        # Count occurrences of gender indicators
-        male_count = sum(1 for ind in male_indicators if ind in text)
-        female_count = sum(1 for ind in female_indicators if ind in text)
+        gender = response.content[0].text.strip().lower()
+        print(f"Gender detection - LLM determined patient is: {gender}")
         
-        # Look for explicit gender mentions
-        if 'his' in text or 'he is' in text or 'he was' in text:
-            male_count += 2
-        if 'her' in text or 'she is' in text or 'she was' in text:
-            female_count += 2
-        
-        print(f"Gender detection - Male indicators: {male_count}, Female indicators: {female_count}")
-        
-        return "Patient_F" if female_count >= male_count else "Patient_M"
+        return "Patient_F" if gender == "female" else "Patient_M"
 
     def extract_dialogues(self, transcript_path):
         """Extract dialogues from transcript file, with or without timestamps."""
         with open(transcript_path, 'r', encoding='utf-8') as f:
-            content = f.read()
-        
-        # Skip header lines (first 4 lines)
-        lines = content.split('\n')
-        dialogue_text = '\n'.join(lines[4:])
+            dialogue_text = f.read()
         
         dialogues = []
         

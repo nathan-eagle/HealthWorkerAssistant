@@ -1,14 +1,32 @@
 import json
-from pathlib import Path
-from typing import Dict, Any, List, Tuple
-from src.protocols.protocol_manager import ProtocolManager
-from anthropic import Anthropic
 import os
+import re
+from typing import Dict, Any, List, Tuple
+
+from protocols.protocol_manager import ProtocolManager
+from anthropic import Anthropic
+
+def extract_json_from_text(text: str) -> dict:
+    """Extract JSON object from text that might contain other content."""
+    json_match = re.search(r'({[\s\S]*})', text)
+    if json_match:
+        try:
+            return json.loads(json_match.group(1))
+        except json.JSONDecodeError:
+            pass
+    return {}
 
 class GuidanceEngine:
+    """
+    GuidanceEngine uses the BHW manual (via ProtocolManager) to analyze health conversations 
+    and generate context-aware recommendations—including filtered danger signs and missing 
+    measurements. The ProtocolManager encapsulates the logic for referencing official guidelines.
+    """
+
     def __init__(self, mode='production'):
         self.protocol_manager = ProtocolManager()
         self.mode = mode
+        # Used to track the relevant context from the latest transcript
         self.current_context = {
             'condition_type': None,
             'measurements': [],
@@ -18,86 +36,165 @@ class GuidanceEngine:
             'trimester': None,
             'danger_signs': []
         }
-        # Initialize Claude for both modes, but with different confidence thresholds
-        self.claude = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
-        # Higher threshold for real-time to avoid premature switching
+        self.claude = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))  # LLM instance
         self.confidence_threshold = 0.8 if mode == 'production' else 0.6
 
-    def generate_guidance(self, transcript: str) -> Dict[str, Any]:
-        """Generate real-time guidance based on the current transcript."""
-        # Try to classify condition type if not set
+    def generate_guidance(self, transcript: str, transcript_filename: str = "") -> Dict[str, Any]:
+        """
+        Main entry to produce symptom guidance, protocol suggestions, missing info,
+        danger signs, and education topics for the user interface.
+        If condition_type is not yet set, we try to infer it from the filename start:
+         - 'prenatal_' for prenatal
+         - 'non-communicable_' for NCD
+         - 'communicable_' for communicable diseases
+        """
+        
+        # 1. Infer condition_type from the start of the filename
+        if not self.current_context['condition_type'] and transcript_filename:
+            base_name = os.path.basename(transcript_filename).lower()
+            if base_name.startswith("prenatal"):
+                self.current_context['condition_type'] = "prenatal"
+            elif base_name.startswith("non-communicable"):
+                self.current_context['condition_type'] = "non-communicable"
+            elif base_name.startswith("communicable"):
+                self.current_context['condition_type'] = "communicable"
+
+        # 2. Fall back to classification if needed
         if not self.current_context['condition_type']:
             condition_type, confidence = self._classify_condition_type(transcript)
             if confidence >= self.confidence_threshold:
                 self.current_context['condition_type'] = condition_type
-        
-        # Extract key information from transcript if not already done
-        if not any([self.current_context['measurements'], 
-                   self.current_context['symptoms'],
-                   self.current_context['covered_topics']]):
+
+        # 2. Extract medical info if not already done
+        if not any([
+            self.current_context['measurements'], 
+            self.current_context['symptoms'],
+            self.current_context['covered_topics']
+        ]):
             extracted_info = self._extract_information(transcript)
             self._update_context(extracted_info)
-        
-        # Generate guidance based on protocols and context
+
+        # 3. Generate protocol-based guidance
         guidance = self._generate_protocol_guidance()
-        
-        return guidance
+
+        # 4. Attempt translation if desired
+        try:
+            response = self.claude.messages.create(
+                model="claude-3-opus-20240229",
+                max_tokens=1500,
+                system="You are a medical translation system...",
+                messages=[
+                    {
+                        "role": "user",
+                        "content": f"""Translate these medical recommendations to Tagalog...
+Symptom Guidance:
+{json.dumps(guidance['symptom_guidance'], indent=2)}
+
+Protocol Suggestions:
+{json.dumps(guidance['protocol_suggestions'], indent=2)}"""
+                    }
+                ]
+            )
+            translations = extract_json_from_text(response.content[0].text)
+            if not translations:
+                translations = {
+                    "tagalog": {
+                        "symptoms": guidance['symptom_guidance'],
+                        "protocols": guidance['protocol_suggestions']
+                    },
+                    "english": {
+                        "symptoms": guidance['symptom_guidance'],
+                        "protocols": guidance['protocol_suggestions']
+                    }
+                }
+        except Exception as e:
+            print(f"Error calling translation API: {str(e)}")
+            translations = {
+                "tagalog": {
+                    "symptoms": guidance['symptom_guidance'],
+                    "protocols": guidance['protocol_suggestions']
+                },
+                "english": {
+                    "symptoms": guidance['symptom_guidance'],
+                    "protocols": guidance['protocol_suggestions']
+                }
+            }
+
+        # 5. Build final return structure
+        return {
+            'symptom_guidance': translations['tagalog']['symptoms'],
+            'protocol_suggestions': translations['tagalog']['protocols'],
+            'missing_information': guidance['missing_information'],
+            'danger_signs': guidance['danger_signs'],
+            'education_topics': guidance['education_topics']
+        }
 
     def _classify_condition_type(self, transcript: str) -> Tuple[str, float]:
-        """Use LLM to classify the conversation into a condition type with confidence."""
+        """Uses LLM to classify condition (prenatal, communicable, or noncommunicable)."""
         response = self.claude.messages.create(
             model="claude-3-opus-20240229",
-            max_tokens=150,
+            max_tokens=100,
             messages=[{
                 "role": "user",
-                "content": f"""Analyze this medical conversation and:
-1. Classify it into ONE of these categories:
-   - prenatal (for maternal/pregnancy care)
-   - communicable (for infectious diseases)
-   - noncommunicable (for chronic conditions)
-2. Provide your confidence level (0.0 to 1.0)
+                "content": f"""Analyze this medical conversation and determine if it is:
+- prenatal
+- communicable
+- non-communicable
 
-Respond in this format exactly:
-CATEGORY|CONFIDENCE
-
-Example:
-prenatal|0.95
+Respond ONLY with the condition type and confidence score (0.0-1.0) separated by a pipe character.
+Example: prenatal|0.95
 
 Conversation:
 {transcript}"""
             }]
         )
-        
-        result = response.content[0].text.strip()
-        category, confidence = result.split('|')
-        return category.strip(), float(confidence)
+
+        try:
+            condition_type, confidence = response.content[0].text.strip().split('|')
+            return condition_type.strip(), float(confidence)
+        except (ValueError, AttributeError, IndexError):
+            return 'unknown', 0.0
 
     def _extract_information(self, transcript: str) -> Dict[str, Any]:
-        """Extract key clinical information from the transcript using Claude."""
+        """
+        Extract key medical information from the transcript via LLM JSON format.
+        Only add a 'danger_sign' if the user actually reports it, not merely
+        when the BHW lists possible signs.
+        """
         response = self.claude.messages.create(
             model="claude-3-opus-20240229",
-            max_tokens=500,
+            max_tokens=1000,
             messages=[{
                 "role": "user",
-                "content": f"""Analyze this medical conversation and extract:
-1. Measurements taken or mentioned (e.g. BP, weight, hemoglobin)
-2. Symptoms reported by the patient
-3. Risk factors identified
-4. Health education topics covered
-5. Trimester (if prenatal)
-6. Any danger signs or concerning symptoms
+                "content": f"""Analyze this medical conversation:
+1. Identify the measurements the mother already has.
+2. Gather any actual symptoms the mother says she is experiencing.
+3. Gather any relevant risk factors and topics covered.
+4. Determine the pregnancy trimester if possible.
+5. ONLY include a danger sign (in "danger_signs") if the mother actually reports it, not just if the BHW mentions it as a possibility.
 
-Format the response as JSON with these keys:
-measurements, symptoms, risk_factors, covered_topics, trimester, danger_signs
+Use a JSON format:
+{{"measurements":[],"symptoms":[],"risk_factors":[],"covered_topics":[],"trimester":null,"danger_signs":[]}}
 
-Conversation:
+Conversation Transcript:
 {transcript}"""
             }]
         )
-        
+
         try:
-            return json.loads(response.content[0].text)
-        except json.JSONDecodeError:
+            extracted = extract_json_from_text(response.content[0].text)
+            # If the LLM returned something, we parse it. Otherwise, use safe defaults.
+            if not extracted:
+                extracted = {
+                    'measurements': [],
+                    'symptoms': [],
+                    'risk_factors': [],
+                    'covered_topics': [],
+                    'trimester': None,
+                    'danger_signs': []
+                }
+            return extracted
+        except (json.JSONDecodeError, AttributeError, IndexError):
             return {
                 'measurements': [],
                 'symptoms': [],
@@ -107,142 +204,85 @@ Conversation:
                 'danger_signs': []
             }
 
-    def _update_context(self, new_info: Dict[str, Any]):
-        """Update the conversation context with new information."""
-        for key, value in new_info.items():
-            if key in self.current_context:
-                if isinstance(value, list):
-                    self.current_context[key].extend(value)
-                else:
-                    self.current_context[key] = value
+    def _update_context(self, extracted_info: Dict[str, Any]):
+        """Update the current context with new data from the transcript info."""
+        self.current_context.update(extracted_info)
 
-    def _generate_protocol_guidance(self) -> Dict[str, Any]:
-        """Generate guidance based on current context and protocols."""
-        condition_type = self.current_context.get('condition_type')
-        if not condition_type:
-            return self._generate_initial_guidance()
-            
-        # Get the appropriate protocol
-        if condition_type == 'prenatal':
-            protocol = self.protocol_manager.get_maternal_protocol()
-        elif condition_type == 'communicable':
-            protocol = self.protocol_manager.get_communicable_protocol()
-        else:
-            protocol = self.protocol_manager.get_noncommunicable_protocol()
-            
-        # Validate current interaction against protocol
+    def _generate_protocol_guidance(self) -> Dict[str, List[str]]:
+        """
+        Generate guidance based on the current context using protocols from the BHW manual.
+        Returns a structured analysis with distinct sections:
+        - Realtime Alerts: Critical information needed during the exam
+        - Missing Information: Required measurements/tests not yet done
+        - Symptom-specific Guidance: Advice based on reported symptoms
+        - Education Topics: Recommended topics to cover
+        - Protocol Suggestions: Follow-up actions needed
+        """
+        # If no condition type, return empty sets
+        if not self.current_context['condition_type']:
+            return {
+                'realtime_alerts': [],
+                'symptom_guidance': [],
+                'missing_information': [],
+                'education_topics': [],
+                'protocol_suggestions': [],
+                'danger_signs': []  # Keep this for compatibility
+            }
+
+        # Get validation results from ProtocolManager
         validation = self.protocol_manager.validate_interaction(
-            condition_type,
+            self.current_context['condition_type'],
             self.current_context
         )
-        
+
+        # Initialize guidance structure
         guidance = {
-            "missing_information": [],
-            "protocol_suggestions": [],
-            "danger_signs": [],
-            "education_topics": [],
-            "symptom_guidance": []
+            'realtime_alerts': [],
+            'symptom_guidance': [],
+            'missing_information': [],
+            'education_topics': validation.get('missing_topics', []),
+            'protocol_suggestions': [],
+            'danger_signs': self.current_context.get('danger_signs', [])  # Keep this for compatibility
         }
-        
-        # Add missing measurements to guidance
-        if validation['missing_measurements']:
-            guidance['missing_information'].extend([
-                f"Need to check {measurement}"
-                for measurement in validation['missing_measurements']
-            ])
-        
-        # Add uncovered education topics
-        if validation['missing_topics']:
-            guidance['education_topics'].extend([
-                f"Discuss {topic}"
-                for topic in validation['missing_topics']
-            ])
-        
-        # Add danger sign alerts
-        if validation['detected_danger_signs']:
-            guidance['danger_signs'].extend([
-                f"ALERT: {sign} detected - requires immediate attention"
-                for sign in validation['detected_danger_signs']
-            ])
-        
-        # Add trimester-specific guidance for prenatal care
-        if condition_type == 'prenatal' and self.current_context.get('trimester'):
-            trimester = self.current_context['trimester']
-            guidance['protocol_suggestions'].extend([
-                f"Follow {trimester} trimester checklist",
-                "Schedule next prenatal visit",
-                "Review pregnancy warning signs"
-            ])
-            
-            # Use LLM to analyze symptoms and generate guidance
-            if self.current_context.get('symptoms'):
-                response = self.claude.messages.create(
-                    model="claude-3-opus-20240229",
-                    max_tokens=500,
-                    messages=[{
-                        "role": "user",
-                        "content": f"""Analyze these pregnancy-related symptoms and provide guidance:
 
-Symptoms reported:
-{json.dumps(self.current_context['symptoms'], indent=2)}
+        # Filter out existing measurements from the missing list
+        existing_lower = [m.lower() for m in self.current_context.get('measurements', [])]
+        filtered_missing = []
+        for item in validation.get('missing_measurements', []):
+            if item.lower() not in existing_lower:
+                filtered_missing.append(item)
 
-Additional context:
-- Trimester: {self.current_context['trimester']}
-- Risk factors: {json.dumps(self.current_context['risk_factors'], indent=2)}
-- Measurements: {json.dumps(self.current_context['measurements'], indent=2)}
+        guidance['missing_information'] = filtered_missing
 
-For each symptom, provide specific, actionable guidance that a Barangay Health Worker can give to the patient.
-Start each symptom's section with the symptom name followed by a period.
-Write each piece of advice for that symptom on a new line.
-Focus only on symptom-specific guidance.
-Do not add any general advice or closing remarks at the end."""
-                    }]
-                )
-                
-                # Clean up the guidance text and preserve symptom grouping
-                guidance_text = response.content[0].text.strip()
-                guidance['symptom_guidance'] = [
-                    line.strip().lstrip('- •*').strip() 
-                    for line in guidance_text.split('\n') 
-                    if line.strip() and not any(x in line.lower() for x in [
-                        'here', 'for each', 'additional', 'remember', 'monitor', 'discuss', 'continue', 'let me know'
-                    ])
-                ]
-            
-            # Add risk-factor specific guidance
-            for risk in self.current_context.get('risk_factors', []):
-                guidance['protocol_suggestions'].append(
-                    f"Monitor closely due to risk factor: {risk}"
-                )
-        
+        # Deduplicate symptom guidance
+        if validation.get('recommendations'):
+            guidance['symptom_guidance'] = list(set(validation.get('recommendations', [])))
+
+        # Create protocol suggestions only for truly missing items
+        guidance['protocol_suggestions'] = [
+            f"Schedule follow-up to check {m}" for m in filtered_missing
+        ]
+
         return guidance
 
-    def _generate_initial_guidance(self) -> Dict[str, Any]:
-        """Generate initial guidance when condition type is unknown."""
-        # Get basic assessment protocol
-        basic_protocol = self.protocol_manager.get_vital_signs_protocol()
-        
-        return {
-            "missing_information": [
-                f"Check {measurement}"
-                for measurement in basic_protocol.get('required_measurements', [])
-            ],
-            "protocol_suggestions": [
-                "Determine primary reason for visit",
-                "Assess for any immediate concerns"
-            ],
-            "danger_signs": [],
-            "education_topics": []
-        }
+    # If you have separate accessor methods for missing info, danger signs, etc.,
+    # you can keep them or remove them if no longer needed:
+    def _get_missing_information(self) -> List[str]:
+        """(Optional) If you want direct list of missing measurements from the BHW manual protocols."""
+        if not self.current_context['condition_type']:
+            return []
+        required = self.protocol_manager.get_required_measurements(self.current_context['condition_type'])
+        return [m for m in required if m not in self.current_context['measurements']]
 
-    def reset_context(self):
-        """Reset the conversation context for a new interaction."""
-        self.current_context = {
-            'condition_type': None,
-            'measurements': [],
-            'symptoms': [],
-            'covered_topics': [],
-            'risk_factors': [],
-            'trimester': None,
-            'danger_signs': []
-        } 
+    def _get_danger_signs(self) -> List[str]:
+        """(Optional) If you want default or comprehensive danger signs, but typically not used if you want only transcript ones."""
+        if not self.current_context['condition_type']:
+            return []
+        return self.protocol_manager.get_danger_signs(self.current_context['condition_type'])
+
+    def _get_education_topics(self) -> List[str]:
+        """(Optional) If you want a direct query for education topics."""
+        if not self.current_context['condition_type']:
+            return []
+        required = self.protocol_manager.get_education_topics(self.current_context['condition_type'])
+        return [t for t in required if t not in self.current_context['covered_topics']] 

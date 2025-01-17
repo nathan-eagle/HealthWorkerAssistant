@@ -11,7 +11,7 @@ Supports both clinical and health promotion roles
 ## Initial Protocol Categories
 Basic vital signs collection / health assessment
 Maternal health 
-Communicable diseases & disease surveillance
+Communicable diseases
 Non-communicable diseases
 
 ### 1. Basic Health Assessment

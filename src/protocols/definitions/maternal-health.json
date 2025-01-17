@@ -1,153 +1,123 @@
 {
-    "protocol_type": "maternal_health",
-    "version": "2024.1",
-    "source": "DOH BHW Reference Manual 2022",
-
-    "required_assessments": {
-        "basic_vitals": {
-            "protocol": "basic_assessment",
+    "name": "Maternal Health Protocol",
+    "description": "Protocol for prenatal care and maternal health monitoring",
+    "required_measurements": [
+        "Blood pressure",
+        "Weight",
+        "Fundal height",
+        "Fetal heart rate",
+        "Edema check",
+        "Urinalysis (protein and sugar)",
+        "Hemoglobin level"
+    ],
+    "education_topics": [
+        "Proper nutrition during pregnancy",
+        "Warning signs and when to seek care",
+        "Birth plan and facility delivery",
+        "Breastfeeding preparation",
+        "Newborn care essentials",
+        "Postpartum care",
+        "Family planning options"
+    ],
+    "danger_signs": [
+        "Severe headache or blurred vision",
+        "Severe abdominal pain",
+        "Vaginal bleeding",
+        "Decreased fetal movement",
+        "High fever",
+        "Swelling of face and hands",
+        "Difficulty breathing",
+        "Convulsions",
+        "Loss of consciousness"
+    ],
+    "trimester_specific": {
+        "first": {
             "required_measurements": [
-                "blood_pressure",
-                "temperature",
-                "pulse_rate",
-                "weight"
+                "Blood type and Rh factor",
+                "Complete blood count",
+                "Urinalysis",
+                "Blood pressure",
+                "Weight"
             ],
-            "modified_thresholds": {
-                "blood_pressure": {
-                    "alert_thresholds": {
-                        "high": {
-                            "systolic": 140,
-                            "diastolic": 90,
-                            "action": "urgent_referral",
-                            "note": "Potential pregnancy-induced hypertension"
-                        }
-                    }
-                }
-            }
-        }
-    },
-
-    "visit_schedule": {
-        "first_trimester": {
-            "frequency": "monthly",
-            "minimum_visits": 3,
-            "measurements": {
-                "required_once": [
-                    "height",
-                    "muac"
-                ]
-            }
+            "education_topics": [
+                "Early pregnancy changes",
+                "Proper nutrition",
+                "Avoiding harmful substances",
+                "Importance of prenatal care",
+                "PhilHealth enrollment"
+            ]
         },
-        "second_trimester": {
-            "frequency": "monthly",
-            "minimum_visits": 3
+        "second": {
+            "required_measurements": [
+                "Blood pressure",
+                "Weight gain",
+                "Fundal height",
+                "Fetal heart rate",
+                "Urinalysis",
+                "Hemoglobin level"
+            ],
+            "education_topics": [
+                "Normal body changes",
+                "Exercise during pregnancy",
+                "Birth planning",
+                "Breastfeeding basics",
+                "Financial preparation"
+            ]
         },
-        "third_trimester": {
-            "frequency": "biweekly",
-            "minimum_visits": 4,
-            "additional_measurements": [
-                "fundal_height"
+        "third": {
+            "required_measurements": [
+                "Blood pressure",
+                "Weight gain",
+                "Fundal height",
+                "Fetal heart rate",
+                "Fetal position",
+                "Edema check",
+                "Urinalysis"
+            ],
+            "education_topics": [
+                "Labor signs and stages",
+                "Birth plan review",
+                "Newborn care",
+                "Postpartum care",
+                "Family planning"
             ]
         }
     },
-
-    "danger_signs": {
-        "immediate_referral": [
-            {
-                "sign": "severe_headache",
-                "tagalog": "matinding sakit ng ulo",
-                "trimester_specific": "third"
-            },
-            {
-                "sign": "vaginal_bleeding",
-                "tagalog": "pagdurugo sa ari"
-            },
-            {
-                "sign": "convulsions",
-                "tagalog": "kombulsyon"
-            },
-            {
-                "sign": "decreased_fetal_movement",
-                "tagalog": "hindi gumagalaw ang sanggol",
-                "trimester_specific": "third"
-            }
-        ]
-    },
-
-    "education_topics": {
-        "first_trimester": [
-            {
-                "topic": "nutrition",
-                "key_points": [
-                    "balanced_diet",
-                    "iron_supplementation",
-                    "folic_acid"
-                ]
-            },
-            {
-                "topic": "danger_signs",
-                "key_points": [
-                    "when_to_seek_care",
-                    "emergency_contacts"
-                ]
-            }
+    "symptom_guidance": {
+        "back_pain": [
+            "Maintain good posture",
+            "Use proper lifting techniques",
+            "Rest adequately",
+            "Apply heat/cold therapy",
+            "Gentle stretching exercises"
         ],
-        "second_trimester": [
-            {
-                "topic": "birth_planning",
-                "key_points": [
-                    "facility_delivery",
-                    "transportation_plan",
-                    "emergency_funds"
-                ]
-            }
+        "fatigue": [
+            "Get adequate rest",
+            "Stay hydrated",
+            "Eat iron-rich foods",
+            "Light exercise",
+            "Regular sleep schedule"
         ],
-        "third_trimester": [
-            {
-                "topic": "breastfeeding",
-                "key_points": [
-                    "early_initiation",
-                    "proper_positioning",
-                    "exclusive_breastfeeding"
-                ]
-            },
-            {
-                "topic": "postpartum_care",
-                "key_points": [
-                    "danger_signs",
-                    "newborn_care",
-                    "family_planning"
-                ]
-            }
-        ]
-    },
-
-    "required_interventions": {
-        "first_visit": [
-            {
-                "intervention": "tetanus_toxoid",
-                "documentation_required": true
-            }
+        "morning_sickness": [
+            "Eat small, frequent meals",
+            "Stay hydrated",
+            "Avoid trigger foods",
+            "Rest when needed",
+            "Ginger tea or crackers"
         ],
-        "all_visits": [
-            {
-                "intervention": "iron_supplementation",
-                "documentation_required": true
-            },
-            {
-                "intervention": "folic_acid",
-                "documentation_required": true
-            }
+        "edema": [
+            "Elevate feet when resting",
+            "Stay active with walking",
+            "Avoid standing for long periods",
+            "Wear comfortable shoes",
+            "Monitor for sudden swelling"
+        ],
+        "heartburn": [
+            "Eat smaller meals",
+            "Avoid spicy/fatty foods",
+            "Stay upright after eating",
+            "Sleep with head elevated",
+            "Avoid eating before bedtime"
         ]
-    },
-
-    "documentation_required": [
-        "gestational_age",
-        "gravida_para",
-        "last_menstrual_period",
-        "expected_delivery_date",
-        "danger_signs_assessed",
-        "education_provided",
-        "interventions_given"
-    ]
+    }
 }
