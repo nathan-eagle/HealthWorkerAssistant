@@ -4,17 +4,22 @@ An AI-powered platform providing real-time protocol support for over 200,000 Bar
 
 ## The Challenge
 
-The Philippines faces a critical healthcare crisis with just 1 doctor per 25,280 people. As a result, 200,000 Barangay Health Workers - 90% of whom are women - must deliver essential primary care despite receiving only 5 days of formal training. These dedicated frontline workers serve 70% of Filipinos living in rural and underserved communities.
+The Philippines faces a critical healthcare crisis with just 1 doctor per 25,280 people. As a result, 200,000 Barangay Health Workers - 90% of whom are women - must deliver essential primary care despite receiving only 5 days of formal training. These dedicated frontline workers serve 70% of Filipinos living in rural and underserved communities.[^1]
 
 ## Our Solution
 
 BHW Copilot processes health worker-patient conversations in real-time, comparing them against Department of Health (DOH) protocols to provide relevant guidance while respecting BHW expertise. By combining generative AI with offline-capable speech recognition, it delivers context-specific support in both Tagalog and English, even in areas with limited connectivity.
 
 Studies show this type of AI guidance can:
-- Improve protocol adherence by 67%
-- Enhance diagnostic accuracy by 70% 
-- Increase BHW confidence by 75%
-- Reduce preventable complications through earlier detection and referral
+- Improve protocol adherence by 67%[^2]
+- Enhance diagnostic accuracy by 70%[^2] 
+- Increase BHW confidence by 75%[^3]
+- Reduce preventable complications through earlier detection and referral[^3]
+
+[^1]: Department of Health Philippines. (2023). Ratio of active barangay health workers to population in the Philippines in 2023, by region. Statista. https://www.statista.com/statistics/1370633/philippines-number-of-health-workers-by-region
+[^2]: Babel et al. (2021). Artificial Intelligence Solutions to Increase Medication Adherence in Patients With Non-communicable Diseases. Frontiers in Digital Health, 3, 669869. https://pmc.ncbi.nlm.nih.gov/articles/PMC8521858
+[^3]: Kearns et al. (2024). Bridging the Skills Gap: Evaluating an AI-Assisted Provider Platform to Support Care Providers with Empathetic Delivery of Protocolized Therapy. arXiv:2401.03631. https://arxiv.org/abs/2401.03631
+
 
 ### Focus Areas
 - Prenatal care
