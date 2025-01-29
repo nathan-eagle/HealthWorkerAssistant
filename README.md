@@ -8,7 +8,7 @@ The Philippines faces a critical healthcare crisis with just 1 doctor per 25,280
 
 ## Our Solution
 
-BHW Copilot processes health worker-patient conversations in real-time, comparing them against [Department of Health (DOH) protocols](tree/main/docs) to provide relevant guidance while respecting BHW expertise. By combining generative AI with offline-capable speech recognition, it delivers context-specific support in both Tagalog and English, even in areas with limited connectivity.
+BHW Copilot processes health worker-patient conversations in real-time, comparing them against [Department of Health (DOH) protocols](https://github.com/nathan-eagle/HealthWorkerCopilot/tree/main/docs) to provide relevant guidance while respecting BHW expertise. By combining generative AI with offline-capable speech recognition, it delivers context-specific support in both Tagalog and English, even in areas with limited connectivity.
 
 Studies show this type of AI guidance can:
 - Improve protocol adherence by 67%[^2]
