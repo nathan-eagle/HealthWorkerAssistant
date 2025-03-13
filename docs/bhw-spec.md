@@ -1,8 +1,8 @@
-# BHW Copilot Specification
+# BHW Decision Support System Specification
 
 ## Platform Overview
 
-The Barangay Health Worker (BHW) Copilot is an AI-powered platform designed to augment BHW decision-making and patient care, while respecting their central role in community healthcare. It is built on protocols extracted from the Department of Health (DOH) BHW Reference Manual and other official guidelines.
+The Barangay Health Worker (BHW) Decision Support System is an AI-powered platform designed to augment BHW decision-making and patient care, while respecting their central role in community healthcare. It is built on protocols extracted from the Department of Health (DOH) BHW Reference Manual and other official guidelines.
 
 Primary goals of the platform include:
 1. Enhancing patient interactions through minimally intrusive, context-aware support

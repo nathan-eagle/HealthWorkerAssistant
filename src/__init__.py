@@ -1,1 +1,1 @@
-# BHW Copilot package
+# BHW Healthcare Assistant package

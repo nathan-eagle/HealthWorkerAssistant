@@ -1,10 +1,10 @@
-# BHW Copilot: AI-Assisted Decision Support for Barangay Health Workers
+# AI-Assisted Decision Support for Barangay Health Workers
 
 ## Executive Summary
 
-This white paper presents findings from the BHW Copilot program, an AI-based decision support system developed to transform healthcare delivery in the Philippines. Our analysis demonstrates that by simply recording patient encounters—a non-disruptive approach requiring minimal additional resources—we can immediately identify life-saving clinical gaps that would otherwise go undetected. The system has already successfully detected critical oversights in areas ranging from infectious disease management to maternal health, with the potential to prevent serious adverse outcomes in real-world settings.
+This white paper presents findings from an AI-based decision support system developed to transform healthcare delivery in the Philippines. Our analysis demonstrates that by simply recording patient encounters—a non-disruptive approach requiring minimal additional resources—we can immediately identify life-saving clinical gaps that would otherwise go undetected. The system has already successfully detected critical oversights in areas ranging from infectious disease management to maternal health, with the potential to prevent serious adverse outcomes in real-world settings.
 
-For Barangay Health Workers, the immediate benefits include enhanced clinical confidence, reduced diagnostic uncertainty, and validation of their essential role in the healthcare ecosystem. For patients, particularly in underserved communities, this technology represents access to dramatically improved care quality without requiring expensive infrastructure or specialist availability. For health systems and funders, the BHW Copilot offers a uniquely cost-effective approach to strengthening primary care at scale, with measurable quality improvements achievable within months rather than years.
+For Barangay Health Workers, the immediate benefits include enhanced clinical confidence, reduced diagnostic uncertainty, and validation of their essential role in the healthcare ecosystem. For patients, particularly in underserved communities, this technology represents access to dramatically improved care quality without requiring expensive infrastructure or specialist availability. For health systems and funders, the system offers a uniquely cost-effective approach to strengthening primary care at scale, with measurable quality improvements achievable within months rather than years.
 
 With continued support and partnership, this approach could become a scalable model for improving healthcare delivery throughout the Philippines and beyond.
 
@@ -12,7 +12,7 @@ With continued support and partnership, this approach could become a scalable mo
 
 The Philippines faces significant healthcare delivery challenges, with approximately 200,000 BHWs serving as the primary healthcare providers for millions of citizens, particularly in rural and underserved areas. These dedicated frontline workers typically receive only minimal formal training yet are responsible for critical health assessments, referrals, and community health education.
 
-The BHW Copilot program aims to bridge this gap by leveraging artificial intelligence to provide real-time, protocol-based guidance without disrupting the natural flow of patient interactions. By analyzing conversations between BHWs and patients, the system can identify missing clinical information, suggest appropriate follow-up questions, and ensure adherence to clinical best practices.
+The system aims to bridge this gap by leveraging artificial intelligence to provide real-time, protocol-based guidance without disrupting the natural flow of patient interactions. By analyzing conversations between BHWs and patients, the system can identify missing clinical information, suggest appropriate follow-up questions, and ensure adherence to clinical best practices.
 
 ## Technical Achievements
 
@@ -100,9 +100,9 @@ Based on these promising initial results, we propose several directions for futu
 
 ## Conclusion
 
-The preliminary results from the BHW Copilot program demonstrate significant technical feasibility and clinical potential. By analyzing audio recordings of patient-provider interactions with sophisticated AI analysis, we can identify critical gaps in patient assessments and provide actionable recommendations to improve care quality.
+The preliminary results demonstrate significant technical feasibility and clinical potential. By analyzing audio recordings of patient-provider interactions with sophisticated AI analysis, we can identify critical gaps in patient assessments and provide actionable recommendations to improve care quality.
 
-Perhaps most importantly, the system respects and enhances the crucial human relationship between BHWs and their communities. Rather than replacing these essential healthcare workers, the BHW Copilot aims to augment their capabilities, allowing them to deliver higher quality care with greater confidence.
+Perhaps most importantly, the system respects and enhances the crucial human relationship between BHWs and their communities. Rather than replacing these essential healthcare workers, the platform aims to augment their capabilities, allowing them to deliver higher quality care with greater confidence.
 
 The insights gained from analyzing conversations in their native language context further highlight the importance of culturally appropriate technology development. By building systems that understand local communication patterns and healthcare practices, we can create tools that truly meet the needs of underserved communities.
 

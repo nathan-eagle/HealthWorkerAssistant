@@ -12,7 +12,7 @@ from pathlib import Path
 from anthropic import Anthropic
 from openai import OpenAI
 
-class BHWCopilot:
+class BHWAssistant:
     def __init__(self, mode='synthetic'):
         self.mode = mode
         self.data_storage = DataStorage()
@@ -452,7 +452,7 @@ Gabay para sa mga Sintomas:
 
 def main():
     # Parse command line arguments
-    parser = argparse.ArgumentParser(description='BHW Copilot')
+    parser = argparse.ArgumentParser(description='BHW Decision Support System')
     parser.add_argument('--mode', choices=['synthetic', 'testing', 'production', 'generate-audio', 'real_audio'],
                        default='synthetic', help='Operation mode')
     parser.add_argument('--transcript', type=str,
@@ -471,25 +471,25 @@ def main():
         print(f"Error: Missing required API keys: {', '.join(missing_keys)}")
         return
 
-    # Initialize and run the copilot
-    copilot = BHWCopilot(mode=args.mode)
-    copilot.setup_directories()
+    # Initialize and run the system
+    assistant = BHWAssistant(mode=args.mode)
+    assistant.setup_directories()
     
     if args.mode == 'generate-audio':
         if not args.transcript:
             print("Error: --transcript argument is required for generate-audio mode")
             return
-        copilot.generate_audio_only(args.transcript)
+        assistant.generate_audio_only(args.transcript)
     elif args.transcript:
-        copilot.test_transcript(args.transcript)
+        assistant.test_transcript(args.transcript)
     elif args.mode == 'synthetic':
-        copilot.synthetic_testing_mode()
+        assistant.synthetic_testing_mode()
     elif args.mode == 'testing':
-        copilot.testing_mode()
+        assistant.testing_mode()
     elif args.mode == 'real_audio':
-        copilot.real_audio_mode(process_all=args.all)
+        assistant.real_audio_mode(process_all=args.all)
     else:  # production mode
-        copilot.production_mode()
+        assistant.production_mode()
 
 if __name__ == "__main__":
     main() 

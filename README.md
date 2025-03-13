@@ -1,4 +1,4 @@
-# BHW Copilot 🏥
+# BHW Healthcare Assistant 🏥
 
 An AI-powered platform providing real-time protocol support for over 200,000 Barangay Health Workers (BHWs) serving as frontline healthcare providers across rural Philippines.
 
@@ -8,7 +8,7 @@ The Philippines faces a critical healthcare crisis with just 1 doctor per 25,280
 
 ## Our Solution
 
-BHW Copilot processes health worker-patient conversations, comparing them against [Department of Health (DOH) protocols](https://github.com/nathan-eagle/HealthWorkerCopilot/tree/main/docs) to provide relevant guidance while respecting BHW expertise. By combining generative AI with offline-capable speech recognition, it delivers context-specific support in both Tagalog and English, even in areas with limited connectivity.
+The BHW Assistant processes health worker-patient conversations, comparing them against [Department of Health (DOH) protocols](https://github.com/nathan-eagle/HealthWorkerCopilot/tree/main/docs) to provide relevant guidance while respecting BHW expertise. By combining generative AI with offline-capable speech recognition, it delivers context-specific support in both Tagalog and English, even in areas with limited connectivity.
 
 Studies show this type of AI guidance can:
 - Improve protocol adherence by 67%[^2]
@@ -79,8 +79,8 @@ Studies show this type of AI guidance can:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/your-username/bhw-copilot.git
-cd bhw-copilot
+git clone https://github.com/your-username/bhw-assistant.git
+cd bhw-assistant
 ```
 
 2. Install dependencies:
