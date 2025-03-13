@@ -1,0 +1,45 @@
+1. Patient Diagnosis
+67-year-old male (referred to as "Tatay") with history of stroke, diabetes, and hypertension. Patient smokes after meals despite these conditions. Limited information provided about stroke timing, type, severity, current symptoms, or recovery progress.
+
+2. Additional Questions
+- Stroke timing, type (ischemic/hemorrhagic), and initial symptoms
+- Current post-stroke limitations and deficits
+- Medication regimen for diabetes, hypertension, and stroke prevention
+- Current blood glucose and blood pressure values
+- Rehabilitation services received (physical, occupational, speech therapy)
+- Diet and exercise habits
+- Family history of stroke/cardiovascular disease
+- Smoking history (quantity, duration) and quit attempts
+- Cognitive status assessment post-stroke
+- Home safety and fall risk evaluation
+
+3. Recommendations
+- Comprehensive neurological and functional assessment
+- Regular blood pressure and glucose monitoring
+- Stroke prevention and comorbidity management education
+- Evidence-based smoking cessation counseling
+- Medication adherence planning
+- Neurology referral for specialized care
+- Appropriate rehabilitation services
+- Diabetes and cardiovascular nutrition counseling
+- Family education on stroke warning signs
+- Regular follow-up appointments
+- Home safety assessment
+
+4. Red Flags and Concerns
+- Continued smoking significantly increases recurrent stroke risk
+- Multiple risk factors (diabetes, hypertension, smoking, age) creating high-risk profile
+- Incomplete medication assessment
+- No evaluation of functional limitations affecting daily activities
+- Cognitive status not assessed
+- Rehabilitation needs not explored
+- Patient's understanding of conditions not determined
+- Vital measurements not documented during encounter
+
+5. Cultural Competency Observations
+- Appropriate use of respectful terms ("Tatay") for elder male
+- Family involvement aligns with Filipino cultural values
+- Need for culturally-sensitive approach to smoking cessation
+- Importance of addressing cultural factors around post-meal smoking habit
+- Consider traditional beliefs about illness causation
+- Family-centered approaches likely more effective than direct confrontation

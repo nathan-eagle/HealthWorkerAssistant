@@ -34,11 +34,11 @@ env/
 # Environment variables
 .env
 
-# Project specific
+# Project specific - exclude raw data and transcriptions, but include analysis
 data/synthetic/audio/
 data/raw/audio/
-data/processed/transcriptions/
-data/processed/analysis/
+data/processed/raw/transcriptions/
+# Keep the analysis files
 
 # OS specific
 .DS_Store

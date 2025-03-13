@@ -107,6 +107,37 @@ Conversation transcript:
         """Extract a simplified name from the audio file path."""
         return Path(audio_file_path).stem
 
+    def perform_enhanced_analysis(self, tagalog_transcription, initial_analysis):
+        """Perform an enhanced analysis using Claude 3.7 Sonnet with the original Tagalog transcript."""
+        print("Performing enhanced analysis with Claude 3.7 Sonnet...")
+        response = self.claude.messages.create(
+            model="claude-3-sonnet-20240229",  # Using Claude 3.7 Sonnet instead of Opus
+            max_tokens=4096,
+            messages=[{
+                "role": "user",
+                "content": f"""I have a Tagalog medical conversation between a Barangay Health Worker (BHW) and a patient, and an initial analysis of this conversation. 
+
+Please review both the original Tagalog transcript and the initial analysis, then enhance the analysis with any additional insights or issues that may have been missed or overlooked in the initial analysis.
+
+Make sure to maintain exactly the same structure and section headings as the original analysis document:
+
+1. Patient Diagnosis
+2. Additional Questions
+3. Recommendations
+4. Red Flags and Concerns
+5. Cultural Competency Observations
+
+Original Tagalog conversation:
+{tagalog_transcription}
+
+Initial analysis:
+{initial_analysis}"""
+            }]
+        )
+        
+        enhanced_analysis = self.extract_claude_content(response)
+        return enhanced_analysis
+
     def process_audio_file(self, audio_file_path, output_dir=None):
         """Process a single audio file through the entire pipeline."""
         print(f"\nProcessing: {audio_file_path}")
@@ -124,6 +155,7 @@ Conversation transcript:
         tagalog_trans_path = transcriptions_dir / f"{audio_filename}_tagalog.txt"
         english_trans_path = transcriptions_dir / f"{audio_filename}_english.txt"
         analysis_path = analysis_dir / f"{audio_filename}_analysis.txt"
+        enhanced_analysis_path = analysis_dir / f"{audio_filename}_analysis2.txt"
         
         # Ensure directories exist
         transcriptions_dir.mkdir(parents=True, exist_ok=True)
@@ -133,13 +165,15 @@ Conversation transcript:
             # Check if all files exist
             if (tagalog_trans_path.exists() and 
                 english_trans_path.exists() and 
-                analysis_path.exists()):
-                print(f"All files already exist for {audio_filename}, skipping processing")
+                analysis_path.exists() and
+                enhanced_analysis_path.exists()):
+                print(f"All files already exist for {audio_filename}, skipping...")
                 return {
                     "audio_file": str(audio_file_path),
                     "tagalog_transcription": str(tagalog_trans_path),
                     "english_transcription": str(english_trans_path),
-                    "analysis": str(analysis_path)
+                    "analysis": str(analysis_path),
+                    "enhanced_analysis": str(enhanced_analysis_path)
                 }
 
             # 1. Transcribe and structure audio if Tagalog transcription doesn't exist
@@ -169,12 +203,23 @@ Conversation transcript:
                 analysis_path.write_text(analysis, encoding='utf-8')
             else:
                 print(f"Analysis exists, loading from {analysis_path}")
+                analysis = analysis_path.read_text(encoding='utf-8')
+            
+            # 4. Perform enhanced analysis with Claude 3.7 Sonnet if it doesn't exist
+            if not enhanced_analysis_path.exists():
+                print("Performing enhanced analysis with Claude 3.7 Sonnet...")
+                enhanced_analysis = self.perform_enhanced_analysis(tagalog_transcription, analysis)
+                enhanced_analysis_path.write_text(enhanced_analysis, encoding='utf-8')
+                print(f"Enhanced analysis saved to {enhanced_analysis_path}")
+            else:
+                print(f"Enhanced analysis exists, loading from {enhanced_analysis_path}")
             
             return {
                 "audio_file": str(audio_file_path),
                 "tagalog_transcription": str(tagalog_trans_path),
                 "english_transcription": str(english_trans_path),
-                "analysis": str(analysis_path)
+                "analysis": str(analysis_path),
+                "enhanced_analysis": str(enhanced_analysis_path)
             }
             
         except Exception as e:

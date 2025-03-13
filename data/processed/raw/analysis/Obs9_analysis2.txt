@@ -1,0 +1,50 @@
+1. Patient Diagnosis
+Patient experiencing anxiety or nervousness ("nervyos") with reported palpitations. Blood pressure 100/80 mmHg (normal range). Insufficient information to determine if this is an isolated episode or chronic anxiety condition.
+
+2. Additional Questions
+- Duration and frequency of nervousness symptoms
+- Specific triggers for anxiety episodes
+- Associated physical symptoms beyond palpitations
+- History of diagnosed anxiety, panic attacks, or mental health conditions
+- Current medications, including those for anxiety/cardiac conditions
+- Caffeine, alcohol, or substance use patterns
+- Recent significant life stressors
+- Previous anxiety management strategies attempted
+- Personal/family history of cardiac conditions
+- Family history of anxiety disorders
+- Sleep patterns and quality
+
+3. Recommendations
+- Complete vital signs assessment (pulse, respiratory rate)
+- Education on anxiety symptoms and physical manifestations
+- Simple relaxation techniques instruction (deep breathing)
+- Lifestyle modifications (caffeine reduction, sleep hygiene)
+- Healthcare provider referral if symptoms persist/worsen
+- Emergency care guidance for severe symptoms
+- Symptom and trigger tracking diary
+- Healthy stress coping mechanisms discussion
+- Follow-up appointment scheduling
+- Anxiety management educational resources
+- Depression screening (common co-occurrence)
+
+4. Red Flags and Concerns
+- Dismissive approach to anxiety ("Think happy thoughts," "Change it")
+- No systematic anxiety symptom assessment
+- Divided attention during patient interaction
+- "Reparel" medication mentioned without explanation
+- No exploration of serious palpitation causes
+- Absence of follow-up or escalation plan
+- Unaddressed patient frustration/emotional distress
+- Disorganized conversation lacking essential health information
+- No suicidal ideation assessment
+- Minimal therapeutic communication techniques
+
+5. Cultural Competency Observations
+- Overly casual terms of address in professional context
+- Need to consider cultural beliefs about mental health
+- Recognition of somatic expression of psychological distress
+- Awareness of potential mental health stigma
+- Dismissive responses potentially reflecting cultural minimization
+- Privacy concerns during sensitive health discussions
+- Importance of culturally-appropriate anxiety management approaches
+- Need for respect when discussing emotional/mental health concerns

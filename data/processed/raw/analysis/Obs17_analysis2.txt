@@ -1,0 +1,54 @@
+1. Patient Diagnosis
+Senior patient (born December 8, 1954) reports head pain and unspecified swelling. No laboratory testing has been conducted. Insufficient information to establish a definitive diagnosis beyond these presenting symptoms.
+
+2. Additional Questions
+- Precise swelling location
+- Onset timing of head pain and swelling
+- Changes in swelling (size, color, consistency)
+- Swelling characteristics (pain, warmth, redness)
+- Associated symptoms
+- Presence of fever, nausea, vomiting, or visual changes
+- Recent head or facial injuries
+- Chronic medical conditions
+- Current medications
+- Attempted treatments
+- Allergies
+- Previous similar episodes
+- Aggravating or alleviating factors
+
+3. Recommendations
+- Thorough physical examination of affected area
+- Vital signs measurement, particularly temperature
+- Appropriate laboratory testing
+- Imaging studies if indicated
+- Pain management recommendations
+- Antibiotic consideration if infection suspected
+- Timely follow-up scheduling
+- Clear home care instructions with warning signs
+- Thorough documentation
+- Specialist referral if condition appears complex
+- Clear patient communication about diagnosis and treatment
+
+4. Red Flags and Concerns
+- Extremely repetitive conversation indicating significant communication issues
+- Head pain with swelling potentially indicating serious condition
+- Lack of laboratory testing despite concerning symptoms
+- Disorganized, ineffective healthcare worker approach
+- Inadequate assessment quality
+- No vital signs or physical examination documentation
+- Lack of systematic approach to serious symptom evaluation
+- Increased risk due to patient age
+- Absence of treatment plan or follow-up
+- Failure to meet professional assessment standards
+
+5. Cultural Competency Observations
+- Appropriate acknowledgment of senior status
+- Potential language barriers contributing to repetitive conversation
+- Different symptom description patterns in Filipino elders
+- Need for clear communication with elder respect
+- Consideration of traditional healing practices
+- Importance of family involvement in Filipino elder healthcare
+- Cultural influence on treatment expectations
+- Sensitivity to financial concerns affecting care decisions
+- Religious influence (Catholic) on healthcare perspectives
+- Age-appropriate communication maintaining dignity

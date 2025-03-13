@@ -1,0 +1,46 @@
+1. Patient Diagnosis
+Elderly female patient ("nanay") with an infected wound requiring cleaning. Limited information about wound location, cause, duration, or severity. Patient being referred to Rural Health Office (RHO).
+
+2. Additional Questions
+- Wound location, size, and appearance
+- Cause of wound (trauma, surgery, chronic condition)
+- Duration of wound presence
+- Associated symptoms (pain, drainage, swelling, redness)
+- Changes in wound appearance over time
+- Home treatments attempted
+- Underlying conditions affecting healing (diabetes, vascular disease)
+- Current medications including antibiotics
+- Allergies to medications or dressing materials
+- History of similar wounds
+- Tetanus immunization status
+
+3. Recommendations
+- Complete wound assessment (size, depth, appearance)
+- Proper antiseptic cleaning technique
+- Appropriate wound dressing selection
+- Antibiotic therapy evaluation if indicated
+- Patient/family wound care education
+- Regular follow-up schedule
+- Physician referral criteria if needed
+- Documentation of wound progression
+- Education on infection warning signs
+- Nutritional guidance for wound healing
+
+4. Red Flags and Concerns
+- Infected wound without proper systematic assessment
+- Disorganized approach to wound care
+- Fragmented, unclear communication
+- Minimal wound history collection
+- Unclear RHO referral urgency and rationale
+- Absence of follow-up or monitoring plan
+- No assessment of home wound care capability
+- Lack of wound severity documentation
+- No evaluation of infection extent or systemic symptoms
+
+5. Cultural Competency Observations
+- Appropriate use of respectful terms ("nanay") for elderly
+- Casual, familiar approach common in Filipino community healthcare
+- Need for clearer explanations in simple language
+- Consideration of traditional healing practices
+- Rushed interaction limiting patient questions
+- Potential RHO access barriers not addressed
