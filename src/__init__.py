@@ -1,1 +1,1 @@
-# BHW Healthcare Assistant package
+# BHW Assistant package
